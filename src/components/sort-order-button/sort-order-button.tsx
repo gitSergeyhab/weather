@@ -44,7 +44,7 @@ const getChecked = (type: string, filterChecked: string[], sortChecked: string, 
   switch (type) {
     case 'radio': return sortChecked === version;
     case 'checkbox': return filterChecked.includes(version);
-    default: return false
+    default: return false;
   }
 }
 interface ISortOrderButton {
@@ -57,16 +57,11 @@ interface ISortOrderButton {
 
 export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrderButton) {
 
-
   const dispatch = useDispatch();
-
   const {filterChecked, sortChecked} = useSelector((state: ReducerType) => state[sortFilterSlice.name])
-
-
   const checked = getChecked(type, filterChecked, sortChecked, version)
 
   const handleChange: ChangeEventHandler = () => {
-    console.log({type, filterChecked, sortChecked, version})
     if (type === 'radio') {
       dispatch(setSortChecked(version));
     } else {
@@ -76,10 +71,9 @@ export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrde
 
   return (
     <div className={`sort-form__input-wrapper input-wrapper input-wrapper--${type}`}>
-      <input id={id} type={type} name={name} value={id} checked={checked}  onChange={handleChange}/>
+      <input id={id} type={type} name={name} value={id} checked={checked} onChange={handleChange}/>
       <label htmlFor={id} aria-label={ariaLabel}>
         <IconSpan version={version}/>
-        {/* <span className="icon icon--arrow-down" /> */}
       </label>
     </div>
   )

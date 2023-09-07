@@ -18,9 +18,7 @@ export function City () {
       <h1 className="visually-hidden">Прогноз погоды</h1>
       <div className="weather-app__content weather-content">
       <TopButtonsPanel/>
-      {/* <CityInput/> */}
       <CitiesContentSection/>
-
     </div>
     </section>
     </main>
