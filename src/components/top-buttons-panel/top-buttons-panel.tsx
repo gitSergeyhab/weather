@@ -21,10 +21,10 @@ const filterData = [
 export function TopButtonsPanel () {
 
   const sortButtons = sortData.map(({ariaLabel, id, name, type, version}) =>
-    <SortOrderButton ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>);
+    <SortOrderButton key={id} ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>);
 
   const filterButtons = filterData.map(({ariaLabel, id, name, type, version}) =>
-    <SortOrderButton ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>)
+    <SortOrderButton key={id} ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>)
 
   return (
     <TopButtonSection>

@@ -1,11 +1,3 @@
-import { ICityItem } from "../../types/city-types";
-
-
-// const CityItemLi = styled.li.attrs({draggable: true})`
-//   border: 4px solid #000;
-//   cursor: pointer;
-// `
-
 export function WeatherItem() {
   return (
     <div className="big-card">

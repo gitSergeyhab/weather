@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CitySort } from "../../const";
 
 
 export interface InitialSortFilterState {
   sortChecked: 'arrow-down'|'arrow-up',
-  filterChecked: string[]
+  filterChecked: string[],
+  citySort: CitySort
 };
 
 
 const initialState: InitialSortFilterState = {
   sortChecked: 'arrow-down',
+  citySort: CitySort.Name,
   filterChecked: []
 };
 
@@ -18,6 +21,7 @@ export const sortFilterSlice = createSlice({
   reducers: {
     setSortChecked(state, {payload}) {
       state.sortChecked = payload;
+      state.citySort = payload === 'arrow-down' ? CitySort.Name : CitySort.NameReverse;
     },
 
     setFilterChecked(state, {payload}) {

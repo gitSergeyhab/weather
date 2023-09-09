@@ -13,7 +13,6 @@ export const reducer = combineReducers({
 export const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
-
 });
 
 export type ReducerType = ReturnType<typeof reducer>;

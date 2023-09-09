@@ -20,7 +20,6 @@ const arrowPart = css`
   width: 20px;
   height: 22px;
 `
-
 const IconSpan = styled.span<{version: string}>`
   display: flex;
   justify-content: center;
@@ -36,7 +35,6 @@ const IconSpan = styled.span<{version: string}>`
   background-image: ${({version}) => [...iconFilterTypes, ...iconSortTypes].includes(version) ?
   `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
   ${({version}) => iconSortTypes.includes(version) ? arrowPart : ''};
-
 `;
 
 
@@ -47,6 +45,7 @@ const getChecked = (type: string, filterChecked: string[], sortChecked: string, 
     default: return false;
   }
 }
+
 interface ISortOrderButton {
   id: string,
   type: string,
@@ -68,6 +67,8 @@ export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrde
       dispatch(setFilterChecked(version));
     }
   }
+
+
 
   return (
     <div className={`sort-form__input-wrapper input-wrapper input-wrapper--${type}`}>

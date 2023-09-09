@@ -1,18 +1,20 @@
 
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import {
+  // PayloadAction,
+  createSlice } from "@reduxjs/toolkit";
 import { fetchCities } from "./cities-thunk";
 import { ICityItem } from "../../types/city-types";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
-  currentCityName?: string
+  currentCityName?: string,
 };
 
 
 
 
 const initialState: InitialCitiesState = {
-  cities: []
+  cities: [],
 };
 
 export const citiesSlice = createSlice({

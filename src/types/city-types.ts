@@ -31,3 +31,6 @@ export interface ICityItem {
   latitude: number,
   longitude: number,
 }
+
+
+// export type CitySortType = CitySort.Name | CitySort.NameReverse

@@ -7,4 +7,9 @@ export const OPEN_WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5/fore
 export const MIN_CITY_POPULATION = 400000;
 
 export const iconSortTypes = ['arrow-down', 'arrow-up']
-export const iconFilterTypes = ['rainy','sunny', 'cloudy', 'snowy', 'stormy', 'blizzard', 'meteorite']
+export const iconFilterTypes = ['rainy','sunny', 'cloudy', 'snowy', 'stormy', 'blizzard', 'meteorite'];
+
+export const enum CitySort {
+  Name = 'name',
+  NameReverse = '-name'
+}
