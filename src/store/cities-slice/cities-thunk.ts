@@ -4,6 +4,7 @@ import { CityResponseData } from "../../types/city-types";
 import { CitySort } from "../../const";
 import { adaptServerCityToCityItem } from "../../utils/adapters";
 import { geoDbApi } from "../../api/geo-db-cities-api";
+import { getUniqueCities } from "../../utils/get-unique-cities";
 
 
 type FetchCities = {
@@ -20,7 +21,9 @@ export const fetchCities = createAsyncThunk(
         params: { sort, namePrefix: value }
       })
 
-      const adaptedCities = result.data.data.map(adaptServerCityToCityItem);
+      console.log(result.data.data, 'result');
+      const uniqueCities = getUniqueCities(result.data.data)
+      const adaptedCities = uniqueCities.map(adaptServerCityToCityItem);
       console.log({adaptedCities})
       return adaptedCities;
     } catch (err) {
