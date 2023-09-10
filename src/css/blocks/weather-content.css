@@ -61,9 +61,13 @@
 }
 
 .weather-content__sort .sort-form__group:nth-child(3) {
-  width: 292px;
+  /* width: 292px; */
 }
 
-.weather-content__sort .sort-form__group:nth-child(3) div:nth-child(7n) {
+/* .weather-content__sort .sort-form__group:nth-child(3) div:nth-child(7n) {
+  margin-right: 0;
+} */
+
+.weather-content__sort .sort-form__group:nth-child(3) div:last-child {
   margin-right: 0;
 }

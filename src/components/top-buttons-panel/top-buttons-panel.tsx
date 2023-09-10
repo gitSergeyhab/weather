@@ -1,3 +1,4 @@
+import { getDirectionFromDeg, getSimpleConditionCode } from "../../utils/utils";
 import { CityNameInput } from "../city-name-input/city-name-input";
 import { SortOrderButton } from "../sort-order-button/sort-order-button";
 import { TopButtonSection } from "../top-buttons-section/top-buttons-section";
@@ -9,16 +10,20 @@ const sortData = [
 ];
 
 const filterData = [
-  {id: 'rainy', ariaLabel: 'Дождливо', name: 'weather-conditions', type: 'checkbox', version: 'rainy'},
   {id: 'sunny', ariaLabel: 'Солнечно', name: 'weather-conditions', type: 'checkbox', version: 'sunny'},
   {id: 'cloudy', ariaLabel: 'Облачно', name: 'weather-conditions', type: 'checkbox', version: 'cloudy'},
+  {id: 'drizzle', ariaLabel: 'Морось', name: 'weather-conditions', type: 'checkbox', version: 'drizzle'},
+  {id: 'mist', ariaLabel: 'Туман', name: 'weather-conditions', type: 'checkbox', version: 'mist'},
+  {id: 'rainy', ariaLabel: 'Дождливо', name: 'weather-conditions', type: 'checkbox', version: 'rainy'},
   {id: 'snowy', ariaLabel: 'Снежно', name: 'weather-conditions', type: 'checkbox', version: 'snowy'},
-  {id: 'stormy', ariaLabel: 'Торнадо', name: 'weather-conditions', type: 'checkbox', version: 'stormy'},
   {id: 'blizzard', ariaLabel: 'Гроза', name: 'weather-conditions', type: 'checkbox', version: 'blizzard'},
-  {id: 'meteorite', ariaLabel: 'Метеоритный дождь', name: 'weather-conditions', type: 'checkbox', version: 'meteorite'},
+  {id: 'stormy', ariaLabel: 'Торнадо', name: 'weather-conditions', type: 'checkbox', version: 'stormy'},
+
+  // {id: 'meteorite', ariaLabel: 'Метеоритный дождь', name: 'weather-conditions', type: 'checkbox', version: 'meteorite'},
 ]
 
 export function TopButtonsPanel () {
+  console.log(getSimpleConditionCode(), getDirectionFromDeg(120))
 
   const sortButtons = sortData.map(({ariaLabel, id, name, type, version}) =>
     <SortOrderButton key={id} ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>);

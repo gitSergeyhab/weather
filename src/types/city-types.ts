@@ -28,8 +28,8 @@ export interface ICityItem {
   id: number,
   cityName: string,
   countryName: string,
-  latitude: number,
-  longitude: number,
+  lat: number,
+  lon: number,
 }
 
 

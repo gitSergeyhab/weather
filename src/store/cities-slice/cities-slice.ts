@@ -4,32 +4,31 @@ import {
   createSlice } from "@reduxjs/toolkit";
 import { fetchCities } from "./cities-thunk";
 import { ICityItem } from "../../types/city-types";
+import { SimpleDict } from "../../types/common-types";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
   currentCityName?: string,
+  cashCityTemperature: SimpleDict
 };
-
-
 
 
 const initialState: InitialCitiesState = {
   cities: [],
+  cashCityTemperature: {}
 };
 
 export const citiesSlice = createSlice({
-  name: 'cities-slice',
+  name: 'citiesSlice',
   initialState,
   reducers: {
     setCurrentCityName(state, {payload}) {
       state.currentCityName = payload;
     },
-    // setInputCommentType(state, action: PayloadAction<CommentType>) {
-    //   state.inputCommentType = action.payload;
-    // },
-    // setInputCommentId(state, action: PayloadAction<string>) {
-    //   state.inputCommentId = action.payload;
-    // },
+    addCashCityTemperature(state, {payload}) {
+      const {cityId, temperature} = payload;
+      state.cashCityTemperature[cityId] = temperature;
+    }
 
   },
   extraReducers: (builder) => {

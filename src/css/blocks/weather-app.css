@@ -12,7 +12,7 @@
   z-index: 1;
 
   flex-shrink: 0;
-  width: 712px;
+  /* width: 712px; */
   height: 100vh;
   min-height: 880px;
   overflow: hidden;

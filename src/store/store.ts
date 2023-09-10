@@ -2,10 +2,12 @@ import { Action, ThunkAction, combineReducers, configureStore } from '@reduxjs/t
 import { AxiosInstance } from 'axios';
 import { citiesSlice } from './cities-slice/cities-slice';
 import { sortFilterSlice } from './sort-filter-slice/sort-filter-slice';
+import { weatherSlice } from './weather-slice/weather-slice';
 
 
 export const reducer = combineReducers({
   [citiesSlice.name]: citiesSlice.reducer,
+  [weatherSlice.name]: weatherSlice.reducer,
   [sortFilterSlice.name]: sortFilterSlice.reducer
 
 });
