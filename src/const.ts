@@ -1,3 +1,5 @@
+import { ICityWeather } from "./types/weather-types";
+
 export const GEO_DB_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
 export const GEO_DB_API_KEY = 'eb1ae116f7msh7396973c512dd66p16b1c6jsn92a17afd11e5';
 export const GEO_DB_API_HOST = 'wft-geo-db.p.rapidapi.com';
@@ -22,7 +24,7 @@ export const enum Condition {
   Rain = 'rainy',
   Snow = 'snowy',
   Thunderstorm = 'stormy',
-  AtmosphereTornado = 'blizzard',
+  Tornado = 'blizzard',
 }
 
 
@@ -36,3 +38,21 @@ export const conditionCodes = {
   Clouds: [801,802,803,804],
   AtmosphereTornado: [771, 781]
 }
+
+export const enum DragArea {
+  Cities = 'cities',
+  Weather = 'weather',
+  WeatherContainer = 'WeatherContainer',
+  None = 'none'
+}
+
+export const emptyCityWeather: ICityWeather = {
+  cityId: -1,
+  cityName: '',
+  conditions: [],
+  countryName: '',
+  direction: '',
+  id: -1,
+  temp: -1000,
+  windSpeed: ''
+};

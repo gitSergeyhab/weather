@@ -9,33 +9,32 @@
 //   )
 // }
 
-import styled, { css } from "styled-components"
 import { ChangeEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { iconFilterTypes, iconSortTypes } from "../../const";
 import { setFilterChecked, setSortChecked, sortFilterSlice } from "../../store/sort-filter-slice/sort-filter-slice";
 import { ReducerType } from "../../store/store";
+import { ConditionImg } from "../condition-img/condition-img";
 
-const arrowPart = css`
-  width: 20px;
-  height: 22px;
-`
-const IconSpan = styled.span<{version: string}>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+// const arrowPart = css`
+//   width: 20px;
+//   height: 22px;
+// `
+// const IconSpan = styled.span<{version: string}>`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-shrink: 0;
+//   width: 24px;
+//   height: 24px;
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: contain;
 
-  background-image: ${({version}) => [...iconFilterTypes, ...iconSortTypes].includes(version) ?
-  `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
-  ${({version}) => iconSortTypes.includes(version) ? arrowPart : ''};
-`;
+//   background-image: ${({version}) => [...iconFilterTypes, ...iconSortTypes].includes(version) ?
+//   `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
+//   ${({version}) => iconSortTypes.includes(version) ? arrowPart : ''};
+// `;
 
 
 const getChecked = (type: string, filterChecked: string[], sortChecked: string, version: string) => {
@@ -68,13 +67,11 @@ export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrde
     }
   }
 
-
-
   return (
     <div className={`sort-form__input-wrapper input-wrapper input-wrapper--${type}`}>
       <input id={id} type={type} name={name} value={id} checked={checked} onChange={handleChange}/>
       <label htmlFor={id} aria-label={ariaLabel}>
-        <IconSpan version={version}/>
+        <ConditionImg version={version}/>
       </label>
     </div>
   )

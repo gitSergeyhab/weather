@@ -69,3 +69,11 @@
 .icon--wind {
   background-image: url('../../assets/img/icon/icon-wind.svg');
 }
+
+.icon--drizzle {
+  background-image: url('../../assets/img/icon/icon-drizzle.svg');
+}
+
+.icon--mist {
+  background-image: url('../../assets/img/icon/icon-mist.svg');
+}

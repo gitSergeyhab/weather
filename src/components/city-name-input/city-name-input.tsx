@@ -2,8 +2,8 @@ import { ChangeEventHandler, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
 import { useDebounce } from "../../hooks/use-debounce";
-import { fetchCities } from "../../store/cities-slice/cities-thunk";
 import { ReducerType } from "../../store/store";
+import { fetchCities } from "../../store/content-slice/cities-thunk";
 
 export function CityNameInput () {
 

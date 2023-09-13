@@ -79,7 +79,7 @@ export interface WeatherType {
 
 export interface IWeather {
   id: number,
-  condition: string,
+  conditions: string[],
   temp: number,
   windSpeed: string,
   direction: string,
@@ -87,5 +87,6 @@ export interface IWeather {
 
 export interface ICityWeather extends IWeather {
   cityId: number,
-  cityCountryName: string
+  cityName: string
+  countryName: string
 }

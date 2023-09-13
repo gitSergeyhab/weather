@@ -1,6 +1,8 @@
 import { CityData, ICityItem } from "../types/city-types";
 import { ICityWeather, WeatherType } from "../types/weather-types";
-import { getDirectionFromDeg, getSimpleConditionCode, getWindString } from "./utils";
+import { weatherDict } from "../weather-dict";
+import { getDirectionFromDeg, getWindString } from "./utils";
+
 
 export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
   cityName: serverCity.name,
@@ -10,16 +12,18 @@ export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
   lon: serverCity.longitude
 })
 
-
 export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityItem): ICityWeather => {
   const {deg, gust, speed} = weather.wind;
-  const condition = getSimpleConditionCode()[weather.weather[0].id];
+  const weatherId = weather.weather[0].id
+  const conditions = weatherDict[weatherId] || [];
   const direction = getDirectionFromDeg(deg);
   const windSpeed = getWindString(speed, gust)
+  // console.log(weather.weather, 'weather[]')
   return {
-    cityCountryName: `${city.cityName}, ${city.countryName}`,
     cityId: city.id,
-    condition,
+    cityName: city.cityName,
+    countryName: city.countryName,
+    conditions,
     direction,
     id: weather.id,
     temp: weather.main.temp,

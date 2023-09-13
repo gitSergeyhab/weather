@@ -4,6 +4,7 @@ const CIRCLE_DEG = 360;
 const WIND_DIRECTIONS = ['С', 'СВ', 'В', 'ЮВ','Ю', 'ЮЗ','З', 'СЗ',];
 const UNKNOWN = 'unknown'
 
+export const round1 = (num: number) => Math.round(num * 10) / 10;
 
 export const getSimpleConditionCode = () => Object.entries(conditionCodes).reduce((acc, [name, list]) => {
     list.forEach((code) => acc[code] = name);
@@ -35,8 +36,19 @@ export const getWindString = (speed?: number, gust?: number) => {
   }
 
   if (gust === undefined) {
-    return `${speed} М/С`;
+    return String(round1(speed));
   }
 
-  return `${speed} (до ${gust}) М/С`;
+  return `${round1(speed)} (до ${round1(gust)})`;
+}
+
+export const getShownTemperature = (temp: number) => {
+  const temperature = round1(temp)
+  if (temp < -273) {
+    return ''
+  }
+  if (!temperature) {
+    return `${0  }°`;
+  }
+  return temperature > 0 ? `+${temperature}°` : `-${temperature}°`
 }

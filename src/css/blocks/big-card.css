@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px 20px 14px 20px;
+  padding: 12px 20px 10px 20px;
 
   background-color: var(--color-white);
 
@@ -26,8 +26,8 @@
 .big-card__city {
   margin-left: 20px;
 
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 28px;
+  line-height: 28px;
 
   transition: color var(--transition-base);
 }
@@ -78,8 +78,8 @@
 .big-card__temperature {
   margin-left: auto;
 
-  font-size: 64px;
-  line-height: 62px;
+  font-size: 40px;
+  line-height: 40px;
   letter-spacing: -0.05em;
 
   opacity: 0.8;
