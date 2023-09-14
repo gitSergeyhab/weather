@@ -1,79 +1,42 @@
-import { DragEvent, DragEventHandler } from "react";
+import {  DragEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import { ICityWeather } from "../../types/weather-types";
 import { getShownTemperature } from "../../utils/utils";
 import { ConditionImg } from "../condition-img/condition-img";
-import { addEmptyCityWeather, deleteEmptyCityWeather, setCityWeatherDragOverId } from "../../store/content-slice/content-slice";
-import { setCityWeatherOverId, setDragCardPosition } from "../../store/dnd-slice/dnd-slice";
-
+import { setDragCityId, setDragCityPosition } from "../../store/dnd-slice/dnd-slice";
+import { CityWeatherPosition } from "../../const";
+import { WeatherItemEmpty } from "../weather-item-empty/weather-item-empty";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   const {cityId, cityName, conditions, countryName, direction, id, temp, windSpeed} = cityWeather
   const dispatch = useDispatch();
   if (id === -1) {
-    return (
-    <div className="big-card big-card-empty">
-      <div className="big-card__header" >
-       <br /><br /><br />
-      </div>
-      <div className="big-card__content" >
-       <br /><br />
-      </div>
-    </div>
-      )
-
+    return <WeatherItemEmpty/>
   }
 
   const temperature = getShownTemperature(temp);
   const conditionElements = conditions.map((item) => <ConditionImg key={item} version={item}/>)
 
-
-  // const handleDragEnter: DragEventHandler = (evt) => {
-  //   evt.preventDefault()
-  //   dispatch(addEmptyCityWeather(cityId));
-  // }
-  // const handleDragLeave: DragEventHandler = (evt) => {
-  //   evt.preventDefault()
-  //   const { relatedTarget, currentTarget } = evt
-
-  //   if (relatedTarget instanceof Element
-  //     && !currentTarget.contains(relatedTarget)) {
-  //     console.log('dispatch(deleteEmptyCityWeather());')
-  //     dispatch(deleteEmptyCityWeather());
-  //   }
-  // }
-
-
   const handleDragEnter: DragEventHandler = (evt) => {
     evt.preventDefault()
-      console.log('handleDragEnter; weather-item')
-      dispatch(setCityWeatherOverId(cityId))
-  }
-
-  const handleDragLeave: DragEventHandler = (evt) => {
-    evt.preventDefault()
-    const { relatedTarget, currentTarget } = evt
-    if (relatedTarget instanceof Element && !currentTarget.contains(relatedTarget)) {
-      console.log('handleDragLeave; weather-item')
-      dispatch(setCityWeatherOverId(null))
-    }
+      dispatch(setDragCityId(cityId))
   }
 
   const handleDragTopEnter: DragEventHandler = (evt) => {
     evt.preventDefault()
-    dispatch(setDragCardPosition('top'))
+    dispatch(setDragCityPosition(CityWeatherPosition.Top))
   }
 
   const handleDragBottomEnter: DragEventHandler = (evt) => {
     evt.preventDefault()
-    dispatch(setDragCardPosition('bottom'))
+    dispatch(setDragCityPosition(CityWeatherPosition.Bottom))
   }
+
   return (
     <div
       className="big-card"
       onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
     >
       <div
         className="big-card__header"
@@ -85,8 +48,6 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
           <br />
           <span className="big-card__city">{countryName}</span>
         </div>
-
-
       </div>
       <div
         className="big-card__content"
@@ -104,6 +65,5 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
         <span className="big-card__temperature">{temperature}</span>
       </div>
     </div>
-)
-
+  )
 }

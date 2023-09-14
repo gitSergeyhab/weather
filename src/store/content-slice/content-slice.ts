@@ -4,9 +4,9 @@ import { fetchCities } from "./cities-thunk";
 import { ICityItem } from "../../types/city-types";
 import { ICityWeather } from "../../types/weather-types";
 import { fakeCityWeathers } from "../../fake/fake-city-weather";
-import { emptyCityWeather } from "../../const";
+import { CityWeatherPosition, DragArea, emptyCityWeather } from "../../const";
 import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList } from "../../utils/reducer-utils";
-import { DragArea } from "./content-slice copy";
+// import { AxiosResponse } from "axios";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
@@ -14,7 +14,10 @@ export interface InitialCitiesState {
   cashCityTemperature: {[key: number]: number},
   weatherCityList: ICityWeather[],
   currentWeatherCity: ICityWeather|null,
-  underEmptyWeatherCityId: number|null,
+  prevCityId: number|null,
+  prevCityPosition: CityWeatherPosition,
+  // cityWeatherPromise: Promise<AxiosResponse<WeatherType>>|null
+
 };
 
 
@@ -23,14 +26,15 @@ const initialState: InitialCitiesState = {
   cashCityTemperature: {},
   weatherCityList: fakeCityWeathers,
   currentWeatherCity: null,
-  underEmptyWeatherCityId: null
+  prevCityId: null,
+  prevCityPosition: CityWeatherPosition.None,
+  // cityWeatherPromise: null
 };
 
 interface SetWeatherCityListByDrag {
-  cityWeatherOverId: number|null,
+  dragCityId: number|null,
   dragArea: string,
-  dragCardPosition: string
-  // isInWeatherContainer: boolean
+  dragCityPosition: CityWeatherPosition
 }
 
 export const contentSlice = createSlice({
@@ -47,59 +51,42 @@ export const contentSlice = createSlice({
         if (currentWeatherCity) {
           state.weatherCityList.push(currentWeatherCity);
         }
-
     },
-
     setCurrentWeatherCity(state, {payload}: {payload: ICityWeather|null}) {
       state.currentWeatherCity = payload
     },
 
-
-    pushEmptyWeatherCity(state){
-      state.weatherCityList.push(emptyCityWeather)
-    },
-
-    // addEmptyWeatherCity(state, {payload}: {payload: number}){
-    //   const newList = insertEmptyWeatherCityToList({originList: state.weatherCityList, cityId: payload})
-    //   state.weatherCityList = newList;
-    // },
-
-    deleteEmptyWeatherCity(state){
-      const newList = deleteEmptyWeatherCityFromList({originList: state.weatherCityList})
-      state.weatherCityList = newList;
-    },
-
     setWeatherCityListByDrag(state, {payload}: {payload: SetWeatherCityListByDrag}) {
-      const {dragArea, cityWeatherOverId, dragCardPosition} = payload;
-      const {underEmptyWeatherCityId} = state;
+      const {dragArea, dragCityId, dragCityPosition} = payload;
+      const {prevCityId, prevCityPosition, weatherCityList} = state;
       if (dragArea !== DragArea.Weather) {
         // если вне зоны DragArea.Weather - удалить пустой город
-        console.log('// если вне зоны DragArea.Weather - удалить пустой город')
+        console.log('// dragArea !== DragArea.Weather - удалить пустой город')
         state.weatherCityList = deleteEmptyWeatherCityFromList({originList: state.weatherCityList});
-        state.underEmptyWeatherCityId = null;
-      } else if (DragArea.Weather === dragArea && cityWeatherOverId) {
+        state.prevCityId = null;
+      } else if (DragArea.Weather === dragArea && dragCityId) {
         // если внутни контейнера и над городом - вставить перед
 
-        console.log('// если в зоне DragArea.Weather - вставить город', {dragCardPosition})
+        console.log('// DragArea.Weather === dragArea && dragCityId - вставить город', {dragCityPosition})
         const newList = insertEmptyWeatherCityToList({
-          originList: state.weatherCityList,
-          cityId: cityWeatherOverId,
-          underEmptyWeatherCityId,
-          position: dragCardPosition
+          originList: weatherCityList, dragCityId, dragCityPosition, prevCityId, prevCityPosition,
         })
         state.weatherCityList = newList;
-        state.underEmptyWeatherCityId = cityWeatherOverId;
-      } else if ((!underEmptyWeatherCityId && DragArea.Weather === dragArea)) {
-        // если вне контейнера и внутри зоны DragArea.Weather- добавить в конец
-        console.log('// если вне контейнера и внутри зоны DragArea.Weather- добавить в конец')
+        state.prevCityId = dragCityId;
+        state.prevCityPosition = dragCityPosition as CityWeatherPosition
+      } else if ((!dragCityId && DragArea.Weather === dragArea)) {
+        console.log('// !dragCityId && DragArea.Weather === dragArea - добавить в конец')
         const noEmptyList = deleteEmptyWeatherCityFromList({originList: state.weatherCityList});
         noEmptyList.push(emptyCityWeather)
         state.weatherCityList = noEmptyList;
-        state.underEmptyWeatherCityId = null;
+        state.prevCityId = null;
+        state.prevCityPosition = CityWeatherPosition.None;
       }
-    }
-  },
+    },
+    // setCityWeatherPromise(city: ICityItem) {
 
+    // }
+  },
 
   extraReducers: (builder) => {
     builder
@@ -113,9 +100,6 @@ export const {
   addCashCityTemperature,
   setCurrentWeatherCity,
   addWeatherCity,
-  // addEmptyWeatherCity,
-  deleteEmptyWeatherCity,
-  pushEmptyWeatherCity,
   setWeatherCityListByDrag
   } = contentSlice.actions;
 

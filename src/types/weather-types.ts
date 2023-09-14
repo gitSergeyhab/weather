@@ -90,3 +90,4 @@ export interface ICityWeather extends IWeather {
   cityName: string
   countryName: string
 }
+

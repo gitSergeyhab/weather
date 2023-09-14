@@ -46,6 +46,13 @@ export const enum DragArea {
   None = 'none'
 }
 
+
+export const enum  CityWeatherPosition {
+  Top = 'top',
+  Bottom = 'bottom',
+  None = 'none'
+}
+
 export const emptyCityWeather: ICityWeather = {
   cityId: -1,
   cityName: '',
