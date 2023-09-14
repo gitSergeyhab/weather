@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 export const iconFilterTypes = ['sunny', 'cloudy', 'drizzle', 'mist',  'rainy', 'snowy', 'stormy', 'blizzard'];
 
 
@@ -91,3 +93,5 @@ export interface ICityWeather extends IWeather {
   countryName: string
 }
 
+export type CityWeatherPromise  = Promise<AxiosResponse<WeatherType>>|null
+// export type CityWeatherPromise  = Promise<WeatherType>|null

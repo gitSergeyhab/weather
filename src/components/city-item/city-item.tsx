@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
-import { DragEventHandler } from "react";
 import { ICityItem } from "../../types/city-types";
-import { fetchWeather } from "../../store/content-slice/weather-thunk";
+import { fetchWeather, refetchWeather } from "../../store/content-slice/weather-thunk";
 import { ReducerType } from "../../store/store";
 import { getShownTemperature } from "../../utils/utils";
-import { addWeatherCity } from "../../store/content-slice/content-slice";
+import { DragArea } from "../../const";
+import { setWeatherCityToEmptySlot } from "../../store/content-slice/content-slice";
 
 
 export function CityItem({city}: {city: ICityItem}) {
@@ -14,7 +14,8 @@ export function CityItem({city}: {city: ICityItem}) {
 
   const { cityName, countryName, id } = city;
 
-  const {cashCityTemperature, weatherCityList, dragArea} = useSelector((state: ReducerType) => state.citiesSlice);
+  const {cashCityTemperature, currentWeatherCity} = useSelector((state: ReducerType) => state.citiesSlice);
+  const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
   const temp = cashCityTemperature[id];
   const temperature = temp !== undefined ? getShownTemperature(temp) : '';
 
@@ -22,25 +23,20 @@ export function CityItem({city}: {city: ICityItem}) {
     dispatch(fetchWeather(city) as unknown as AnyAction)
   }
 
-  // const handleDragEnd = () => {
-  //   console.log(dragArea, 'handleDragEnd')
-  //   if (!weatherCityList.length && dragArea === DragArea.Weather) {
-  //     console.log('handleDragEnd !weatherCityList.length && dragArea === DragArea.Weather')
-  //     dispatch(addWeatherCity())
-  //   }
-  // }
-
-  // const onDrag: DragEventHandler = (evt) => {
-  //   console.log(dragArea, 'onDrag')
-  // }
+  const handleDragEnd = () => {
+    if (dragArea === DragArea.Weather && currentWeatherCity) {
+      dispatch(setWeatherCityToEmptySlot())
+    } else if (dragArea === DragArea.Weather) {
+      dispatch(refetchWeather(city) as unknown as AnyAction)
+    }
+  }
 
   return (
     <div
       className="small-card"
       draggable
       onDragStart={handleDragStart}
-      // onDragEnd={handleDragEnd}
-      // onDrag={onDrag}
+      onDragEnd={handleDragEnd}
     >
       <span className="small-card__city">
         {cityName}, {countryName}

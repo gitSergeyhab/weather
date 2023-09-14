@@ -21,6 +21,8 @@ interface InsertEmptyWeatherCardToList {
   prevCityPosition: CityWeatherPosition,
 }
 
+
+
 /**
  * вставляет пустой город в ICityWeather[] по cityId
  * @param param0
@@ -37,4 +39,14 @@ export const insertEmptyWeatherCityToList = ({originList, dragCityId, dragCityPo
   return newList;
 }
 
+interface InsertWeatherCityToEmptySlot {
+  originList: ICityWeather[],
+  cityWeather: ICityWeather|null
+}
+export const insertWeatherCityToEmptySlot = ({cityWeather, originList}: InsertWeatherCityToEmptySlot) => {
+  if (!cityWeather) return originList;
+  const emptyIndex = originList.findIndex((item) => item.cityId === -1);
+  if (emptyIndex === -1) return originList;
+  return [...originList.slice(0, emptyIndex), cityWeather, ...originList.slice(emptyIndex+1)];
+}
 

@@ -5,8 +5,7 @@ import { ICityItem } from "../../types/city-types";
 import { ICityWeather } from "../../types/weather-types";
 import { fakeCityWeathers } from "../../fake/fake-city-weather";
 import { CityWeatherPosition, DragArea, emptyCityWeather } from "../../const";
-import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList } from "../../utils/reducer-utils";
-// import { AxiosResponse } from "axios";
+import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList, insertWeatherCityToEmptySlot } from "../../utils/reducer-utils";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
@@ -16,10 +15,7 @@ export interface InitialCitiesState {
   currentWeatherCity: ICityWeather|null,
   prevCityId: number|null,
   prevCityPosition: CityWeatherPosition,
-  // cityWeatherPromise: Promise<AxiosResponse<WeatherType>>|null
-
 };
-
 
 const initialState: InitialCitiesState = {
   cities: [],
@@ -28,7 +24,6 @@ const initialState: InitialCitiesState = {
   currentWeatherCity: null,
   prevCityId: null,
   prevCityPosition: CityWeatherPosition.None,
-  // cityWeatherPromise: null
 };
 
 interface SetWeatherCityListByDrag {
@@ -45,12 +40,6 @@ export const contentSlice = createSlice({
     addCashCityTemperature(state, {payload}:{payload: {cityId: number, temperature: number}}) {
       const {cityId, temperature} = payload;
       state.cashCityTemperature[cityId] = temperature;
-    },
-    addWeatherCity(state) {
-        const {currentWeatherCity} = state;
-        if (currentWeatherCity) {
-          state.weatherCityList.push(currentWeatherCity);
-        }
     },
     setCurrentWeatherCity(state, {payload}: {payload: ICityWeather|null}) {
       state.currentWeatherCity = payload
@@ -83,9 +72,15 @@ export const contentSlice = createSlice({
         state.prevCityPosition = CityWeatherPosition.None;
       }
     },
-    // setCityWeatherPromise(city: ICityItem) {
 
-    // }
+    setWeatherCityToEmptySlot(state) {
+      const {weatherCityList, currentWeatherCity} = state;
+      console.log({weatherCityList, currentWeatherCity}, 'setWeatherCityToEmptySlot')
+      const newList  = insertWeatherCityToEmptySlot({cityWeather: currentWeatherCity, originList: weatherCityList});
+      state.weatherCityList = newList;
+      state.prevCityId = null;
+      state.prevCityPosition = CityWeatherPosition.None;
+    }
   },
 
   extraReducers: (builder) => {
@@ -99,7 +94,7 @@ export const contentSlice = createSlice({
 export const {
   addCashCityTemperature,
   setCurrentWeatherCity,
-  addWeatherCity,
-  setWeatherCityListByDrag
+  setWeatherCityListByDrag,
+  setWeatherCityToEmptySlot
   } = contentSlice.actions;
 
