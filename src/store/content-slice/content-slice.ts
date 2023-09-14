@@ -20,7 +20,7 @@ export interface InitialCitiesState {
 const initialState: InitialCitiesState = {
   cities: [],
   cashCityTemperature: {},
-  weatherCityList: fakeCityWeathers,
+  weatherCityList: [],
   currentWeatherCity: null,
   prevCityId: null,
   prevCityPosition: CityWeatherPosition.None,

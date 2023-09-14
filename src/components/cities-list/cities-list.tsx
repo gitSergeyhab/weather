@@ -5,13 +5,25 @@ import { CityItem } from "../city-item/city-item";
 import { contentSlice } from "../../store/content-slice/content-slice";
 import { DragArea } from "../../const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
+import { ICityItem } from "../../types/city-types";
+import { ICityWeather } from "../../types/weather-types";
 
+interface FilterCityByWeatherCities {
+  cities: ICityItem[],
+  weatherCities: ICityWeather[]
+}
+
+export const filterCitiesByWeatherCities = ({cities, weatherCities}: FilterCityByWeatherCities) => {
+  const weatherCitiesId = weatherCities.map((item) => item.cityId)
+  return cities.filter((item) => !weatherCitiesId.includes(item.id))
+}
 
 
 export function CitiesList () {
 
-  const {cities} = useSelector((state: ReducerType) => state[contentSlice.name]);
-  const citiesElements = cities.map((item) => <CityItem key={item.id} city={item}/>)
+  const {cities, weatherCityList} = useSelector((state: ReducerType) => state[contentSlice.name]);
+  const citiesElements = filterCitiesByWeatherCities({cities, weatherCities: weatherCityList})
+    .map((item) => <CityItem key={item.id} city={item}/>)
 
   const dispatch = useDispatch()
 
@@ -19,20 +31,12 @@ export function CitiesList () {
     evt.preventDefault()
     dispatch(setDragArea(DragArea.Cities))
   }
-  // const handleDragLeave: DragEventHandler = (evt) => {
-  //   const {currentTarget, relatedTarget} = evt
-  //   if (relatedTarget instanceof Element && !currentTarget.contains(relatedTarget)) {
-  //     console.log('CitiesList; handleDragLeave')
-  //     dispatch(setDragArea(DragArea.None))
-  //   }
 
-  // }
 
   return (
     <div
       className="weather-content__small-cards"
       onDragEnter={handleDragEnter}
-      // onDragLeave={handleDragLeave}
     >
       {citiesElements}
     </div>
