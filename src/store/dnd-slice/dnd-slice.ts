@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CityWeatherPosition, DragArea } from "../../const";
+import { CityWeatherPosition, DragArea, ElementType } from "../../const";
 
 export interface InitialCitiesState {
   dragCityId: number|null,
   dragCityPosition: CityWeatherPosition,
   dragArea: DragArea,
+  dragElementType: ElementType
 };
-
 
 const initialState: InitialCitiesState = {
   dragArea: DragArea.None,
   dragCityId: null,
   dragCityPosition: CityWeatherPosition.None,
+  dragElementType: ElementType.None
 };
-
 
 export const dndSlice = createSlice({
   name: 'dndSlice',
@@ -28,8 +28,16 @@ export const dndSlice = createSlice({
     setDragCityPosition(state, {payload}) {
       state.dragCityPosition = payload;
     },
+    setDragElementType(state, {payload}: {payload: ElementType}) {
+      state.dragElementType = payload;
+    },
   }
 })
 
 
-export const {setDragArea, setDragCityId, setDragCityPosition} = dndSlice.actions
+export const {
+  setDragArea,
+  setDragCityId,
+  setDragCityPosition,
+  setDragElementType
+} = dndSlice.actions

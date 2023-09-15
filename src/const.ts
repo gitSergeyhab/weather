@@ -53,6 +53,12 @@ export const enum  CityWeatherPosition {
   None = 'none'
 }
 
+export const enum ElementType {
+  City = 'city',
+  Weather = 'weather',
+  None = 'none'
+}
+
 export const emptyCityWeather: ICityWeather = {
   cityId: -1,
   cityName: '',

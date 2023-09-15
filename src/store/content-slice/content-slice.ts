@@ -3,9 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCities } from "./cities-thunk";
 import { ICityItem } from "../../types/city-types";
 import { ICityWeather } from "../../types/weather-types";
-import { fakeCityWeathers } from "../../fake/fake-city-weather";
 import { CityWeatherPosition, DragArea, emptyCityWeather } from "../../const";
-import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList, insertWeatherCityToEmptySlot } from "../../utils/reducer-utils";
+import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList, insertWeatherCityToEmptySlot, removeWeatherCityFromList, replaceWeatherCityToEmptySlot } from "../../utils/reducer-utils";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
@@ -80,8 +79,28 @@ export const contentSlice = createSlice({
       state.weatherCityList = newList;
       state.prevCityId = null;
       state.prevCityPosition = CityWeatherPosition.None;
-    }
+    },
+
+    resetWeatherCityToEmptySlot(state) {
+      const {weatherCityList, currentWeatherCity} = state;
+      console.log({weatherCityList, currentWeatherCity}, 'replaceWeatherCityToEmptySlot')
+      const newList = replaceWeatherCityToEmptySlot({cityWeather: currentWeatherCity, originList: weatherCityList});
+      state.weatherCityList = newList;
+      state.prevCityId = null;
+      state.prevCityPosition = CityWeatherPosition.None;
+    },
+
+    deleteWeatherCityFromList(state) {
+      const {weatherCityList, currentWeatherCity} = state;
+      console.log({weatherCityList, currentWeatherCity}, 'deleteWeatherCityFromList')
+      const newList = removeWeatherCityFromList({cityWeather: currentWeatherCity, originList: weatherCityList});
+      state.weatherCityList = newList;
+      state.prevCityId = null;
+      state.prevCityPosition = CityWeatherPosition.None;
+    },
   },
+
+
 
   extraReducers: (builder) => {
     builder
@@ -95,6 +114,8 @@ export const {
   addCashCityTemperature,
   setCurrentWeatherCity,
   setWeatherCityListByDrag,
-  setWeatherCityToEmptySlot
+  setWeatherCityToEmptySlot,
+  resetWeatherCityToEmptySlot,
+  deleteWeatherCityFromList
   } = contentSlice.actions;
 

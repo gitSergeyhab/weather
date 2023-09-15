@@ -50,3 +50,15 @@ export const insertWeatherCityToEmptySlot = ({cityWeather, originList}: InsertWe
   return [...originList.slice(0, emptyIndex), cityWeather, ...originList.slice(emptyIndex+1)];
 }
 
+export const replaceWeatherCityToEmptySlot = ({cityWeather, originList}: InsertWeatherCityToEmptySlot) => {
+  if (!cityWeather) return originList;
+  const withoutOldCityList = originList.filter((item) => item.cityId !== cityWeather.cityId);
+  const emptyIndex = withoutOldCityList.findIndex((item) => item.cityId === -1);
+  if (emptyIndex === -1) return originList;
+  return [...withoutOldCityList.slice(0, emptyIndex), cityWeather, ...withoutOldCityList.slice(emptyIndex+1)];
+}
+
+export const removeWeatherCityFromList = ({cityWeather, originList}: InsertWeatherCityToEmptySlot) => {
+  if (!cityWeather) return originList;
+  return originList.filter((item) => item.cityId !== cityWeather.cityId);
+}

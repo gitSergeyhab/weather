@@ -44,6 +44,5 @@ export function CityItem({city}: {city: ICityItem}) {
       <span className="small-card__temperature">{temperature}</span>
       <span className="icon icon--strips-small" />
     </div>
-)
-
+  )
 }
