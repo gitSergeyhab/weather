@@ -8,6 +8,7 @@ import { CityWeatherPosition, DragArea } from "../../const";
 import { setWeatherCityListByDrag } from "../../store/content-slice/content-slice";
 import { filterWeatherCitiesByConditions } from "../../utils/filters";
 import { ContentBigCards } from "../common-styles/content-cards";
+import { setWeatherCitiesToLS } from "../../utils/storage-utils";
 
 
 export const WeatherContentHelp  = styled.div`
@@ -31,8 +32,12 @@ export function WeatherList () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setWeatherCityListByDrag({dragArea, dragCityId, dragCityPosition}))
+    dispatch(setWeatherCityListByDrag({dragArea, dragCityId, dragCityPosition}));
   }, [dragArea, dragCityId, dragCityPosition, dispatch])
+
+  useEffect(() => {
+    setWeatherCitiesToLS(weatherCityList);
+  }, [weatherCityList])
 
 
   const filteredWeatherCities = filterWeatherCitiesByConditions({weatherCities: weatherCityList, filterConditions: filterChecked})
