@@ -62,3 +62,4 @@ export const removeWeatherCityFromList = ({cityWeather, originList}: InsertWeath
   if (!cityWeather) return originList;
   return originList.filter((item) => item.cityId !== cityWeather.cityId);
 }
+
