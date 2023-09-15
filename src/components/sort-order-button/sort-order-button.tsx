@@ -2,7 +2,8 @@ import { ChangeEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterChecked, setSortChecked, sortFilterSlice } from "../../store/sort-filter-slice/sort-filter-slice";
 import { ReducerType } from "../../store/store";
-import { ConditionImg, SortImg } from "../condition-img/condition-img";
+import { ConditionImg, SortImg } from "../icon-img/icon-img";
+import { InputWrapperCheckBox, InputWrapperRadio } from "../common-styles/inputs";
 
 
 const getChecked = (type: string, filterChecked: string[], sortChecked: string, version: string) => {
@@ -35,13 +36,13 @@ export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrde
   }
 
   const svgIcon = type === 'radio' ?  <SortImg version={version}/> : <ConditionImg version={version}/> ;
-
+  const InputWrapper = type === 'radio' ? InputWrapperRadio :  InputWrapperCheckBox;
   return (
-    <div className={`sort-form__input-wrapper input-wrapper input-wrapper--${type}`}>
+    <InputWrapper>
       <input id={id} type={type} name={name} value={id} checked={checked} onChange={handleChange}/>
       <label htmlFor={id} aria-label={ariaLabel}>
         {svgIcon}
       </label>
-    </div>
+    </InputWrapper>
   )
 }

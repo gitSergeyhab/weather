@@ -1,9 +1,20 @@
 import { DragEventHandler } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import { CitiesList } from "../cities-list/cities-list";
 import { WeatherList } from "../weather-list/weather-list";
 import { DragArea } from "../../const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
+import { HiddenH2 } from "../common-styles/common";
+
+
+const Section = styled.section`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 2px 4px 0 4px;
+`
 
 export function CitiesContentSection () {
   const dispatch = useDispatch()
@@ -18,15 +29,20 @@ export function CitiesContentSection () {
     }
   }
 
+  const handleDragOver: DragEventHandler = (evt) => {
+    evt.preventDefault()
+
+  }
+
   return (
-    <section
-      className="weather-content__result"
+    <Section
       onDragLeave={handleDragLeave}
+      onDragOver={handleDragOver}
     >
-      <h2 className="visually-hidden">Результаты сортировки</h2>
+      <HiddenH2>Результаты сортировки</HiddenH2>
         <CitiesList/>
         <WeatherList/>
-    </section>
+    </Section>
   )
 
 }

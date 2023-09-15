@@ -6,6 +6,8 @@ import { ReducerType } from "../../store/store";
 import { getShownTemperature } from "../../utils/utils";
 import { DragArea } from "../../const";
 import { setWeatherCityToEmptySlot } from "../../store/content-slice/content-slice";
+import { IconStripsSmall } from "../icon-img/icon-img";
+import { SmallCard, SmallCardCity, SmallCardTemperature } from "../common-styles/small-card";
 
 
 export function CityItem({city}: {city: ICityItem}) {
@@ -32,17 +34,15 @@ export function CityItem({city}: {city: ICityItem}) {
   }
 
   return (
-    <div
-      className="small-card"
-      draggable
+    <SmallCard
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <span className="small-card__city">
+      <SmallCardCity>
         {cityName}, {countryName}
-      </span>
-      <span className="small-card__temperature">{temperature}</span>
-      <span className="icon icon--strips-small" />
-    </div>
+      </SmallCardCity>
+      <SmallCardTemperature>{temperature}</SmallCardTemperature>
+      <IconStripsSmall/>
+    </SmallCard>
   )
 }

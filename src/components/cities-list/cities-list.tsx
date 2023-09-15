@@ -6,6 +6,7 @@ import { contentSlice } from "../../store/content-slice/content-slice";
 import { DragArea } from "../../const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
 import { filterCitiesByWeatherCities } from "../../utils/filters";
+import { ContentCards } from "../common-styles/content-cards";
 
 
 export function CitiesList () {
@@ -23,11 +24,8 @@ export function CitiesList () {
 
 
   return (
-    <div
-      className="weather-content__small-cards"
-      onDragEnter={handleDragEnter}
-    >
+    <ContentCards onDragEnter={handleDragEnter} >
       {citiesElements}
-    </div>
+    </ContentCards>
   )
 }

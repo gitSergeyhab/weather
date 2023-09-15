@@ -4,6 +4,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { useDebounce } from "../../hooks/use-debounce";
 import { ReducerType } from "../../store/store";
 import { fetchCities } from "../../store/content-slice/cities-thunk";
+import { InputWrapperSearch } from "../common-styles/inputs";
 
 export function CityNameInput () {
 
@@ -23,9 +24,9 @@ export function CityNameInput () {
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (evt) =>
     setCityName(evt.currentTarget.value)
   return (
-    <div className="sort-form__input-wrapper input-wrapper input-wrapper--search">
+    <InputWrapperSearch>
       <input id="search" type="search" name="city-search" onChange={handleInputChange} placeholder="Название города" />
       <label htmlFor="search" aria-label="Поиск городов" />
-    </div>
+    </InputWrapperSearch>
   )
 }

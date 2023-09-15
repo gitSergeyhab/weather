@@ -1,13 +1,13 @@
-import {  DragEventHandler } from "react";
+import { DragEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICityWeather } from "../../types/weather-types";
 import { getShownTemperature } from "../../utils/utils";
 import { setDragCityId, setDragCityPosition, setDragElementType } from "../../store/dnd-slice/dnd-slice";
 import { CityWeatherPosition, DragArea, ElementType } from "../../const";
-import { WeatherItemEmpty } from "../weather-item-empty/weather-item-empty";
 import { deleteWeatherCityFromList, resetWeatherCityToEmptySlot, setCurrentWeatherCity } from "../../store/content-slice/content-slice";
 import { ReducerType } from "../../store/store";
-import { ConditionImg } from "../condition-img/condition-img";
+import { ConditionImg, IconStripsBig, IconWind } from "../icon-img/icon-img";
+import { BigCard, BigCardCity, BigCardConditions, BigCardContent, BigCardEmpty, BigCardHeader, BigCardTemperature, BigCardWind, BigCardWindInfo } from "../common-styles/big-card";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
@@ -16,7 +16,7 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
 
   if (id === -1) {
-    return <WeatherItemEmpty/>
+    return <BigCardEmpty/>
   }
 
   const temperature = getShownTemperature(temp);
@@ -52,39 +52,28 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   }
 
   return (
-    <div
-      className="big-card"
+    <BigCard
       onDragEnter={handleDragEnter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      draggable
     >
-      <div
-        className="big-card__header"
-        onDragEnter={handleDragTopEnter}
-      >
-        <span className="icon icon--strips-big" />
+      <BigCardHeader  onDragEnter={handleDragTopEnter}>
+        <IconStripsBig />
         <div>
-          <span className="big-card__city">{cityName}</span>
-          <br />
-          <span className="big-card__city">{countryName}</span>
+          <BigCardCity>{cityName}</BigCardCity>
+          <BigCardCity>{countryName}</BigCardCity>
         </div>
-      </div>
-      <div
-        className="big-card__content"
-        onDragEnter={handleDragBottomEnter}
-      >
-        <div className="big-card__content-wrapper">
-          <div className="big-card__weather-conditions">
-            {conditionElements}
-          </div>
-          <div className="big-card__wind">
-            <span className="icon icon--wind" />
-            <span className="big-card__wind-info">Ветер {direction}, {windSpeed} м/с</span>
-          </div>
+      </BigCardHeader>
+      <BigCardContent onDragEnter={handleDragBottomEnter}>
+        <div>
+          <BigCardConditions> {conditionElements} </BigCardConditions>
+          <BigCardWind>
+            <IconWind />
+            <BigCardWindInfo>Ветер {direction}, {windSpeed} м/с</BigCardWindInfo>
+          </BigCardWind>
         </div>
-        <span className="big-card__temperature">{temperature}</span>
-      </div>
-    </div>
+        <BigCardTemperature>{temperature}</BigCardTemperature>
+      </BigCardContent>
+    </BigCard>
   )
 }
