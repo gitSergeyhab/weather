@@ -10,7 +10,7 @@ const compareLists = (cityConditions: string[], filterConditions: string[]) => {
       return false;
     }
   }
-  return true
+  return true;
 }
 
 interface ConditionWeatherCityFilter {
@@ -24,7 +24,7 @@ interface ConditionWeatherCityFilter {
  * @returns
  */
 export const filterWeatherCitiesByConditions = ({weatherCities, filterConditions}: ConditionWeatherCityFilter) =>
-  weatherCities.filter((item) => compareLists(item.conditions, filterConditions) )
+  weatherCities.filter((item) => compareLists(item.conditions, filterConditions));
 
 
   interface FilterCityByWeatherCities {
@@ -33,6 +33,6 @@ export const filterWeatherCitiesByConditions = ({weatherCities, filterConditions
   }
 
   export const filterCitiesByWeatherCities = ({cities, weatherCities}: FilterCityByWeatherCities) => {
-    const weatherCitiesId = weatherCities.map((item) => item.cityId)
-    return cities.filter((item) => !weatherCitiesId.includes(item.id))
+    const weatherCitiesId = weatherCities.map((item) => item.cityId);
+    return cities.filter((item) => !weatherCitiesId.includes(item.id));
   }

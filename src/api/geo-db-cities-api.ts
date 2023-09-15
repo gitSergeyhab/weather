@@ -15,7 +15,7 @@ export const createGeoDbApi = () => {
       minPopulation: MIN_CITY_POPULATION,
       types: 'city',
       limit: 10,
-      // languageCode: 'RU'
+      languageCode: 'RU'
 
     }
   })

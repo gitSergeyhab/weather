@@ -5,8 +5,8 @@ import { TopButtonSection } from "../top-buttons-section/top-buttons-section";
 import { TopButtonSector } from "../top-buttons-sector/top-buttons-sector";
 
 const sortData = [
-  {id: 'alphabet-sort', ariaLabel: 'Сортировка по алфавиту', name: 'alphabet-sort', type: 'radio', version: 'arrow-down'},
-  {id: 'alphabet-sort-reverse', ariaLabel: 'Сортировка по алфавиту в обратном направлении', name: 'alphabet-sort', type: 'radio', version: 'arrow-up'}
+  {id: 'alphabet-sort-reverse', ariaLabel: 'Сортировка по населению: сначала больше', name: 'alphabet-sort', type: 'radio', version: 'up'},
+  {id: 'alphabet-sort', ariaLabel: 'Сортировка по населению: сначала меньшее', name: 'alphabet-sort', type: 'radio', version: 'down'},
 ];
 
 const filterData = [

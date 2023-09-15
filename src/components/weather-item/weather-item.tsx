@@ -2,12 +2,12 @@ import {  DragEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICityWeather } from "../../types/weather-types";
 import { getShownTemperature } from "../../utils/utils";
-import { ConditionImg } from "../condition-img/condition-img";
 import { setDragCityId, setDragCityPosition, setDragElementType } from "../../store/dnd-slice/dnd-slice";
 import { CityWeatherPosition, DragArea, ElementType } from "../../const";
 import { WeatherItemEmpty } from "../weather-item-empty/weather-item-empty";
 import { deleteWeatherCityFromList, resetWeatherCityToEmptySlot, setCurrentWeatherCity } from "../../store/content-slice/content-slice";
 import { ReducerType } from "../../store/store";
+import { ConditionImg } from "../condition-img/condition-img";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {

@@ -1,12 +1,7 @@
-import styled, { css } from "styled-components"
-import { iconFilterTypes, iconSortTypes } from "../../const";
+import styled from "styled-components"
+import { iconFilterTypes } from "../../const";
 
-
-const arrowPart = css`
-  width: 20px;
-  height: 22px;
-`
-export const ConditionImg = styled.span<{version: string}>`
+export const SvgImg = styled.span<{version: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +12,14 @@ export const ConditionImg = styled.span<{version: string}>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-
-  background-image: ${({version}) => [...iconFilterTypes, ...iconSortTypes].includes(version) ?
-  `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
-  ${({version}) => iconSortTypes.includes(version) ? arrowPart : ''};
 `;
 
+export const ConditionImg = styled(SvgImg)`
+  background-image: ${({version}) => iconFilterTypes.includes(version) ?
+  `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
+`;
+
+export const SortImg = styled(SvgImg)`
+  background-image: url('../../assets/img/icon/icon-population.svg');
+  ${({version}) => version === 'up' ? 'transform: scale(-1, 1)' : ''};
+`;

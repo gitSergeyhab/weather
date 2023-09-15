@@ -13,8 +13,8 @@ export const iconSortTypes = ['arrow-down', 'arrow-up']
 export const iconFilterTypes = ['sunny', 'cloudy', 'drizzle', 'mist', 'rainy','snowy', 'stormy', 'blizzard'];
 
 export const enum CitySort {
-  Name = 'name',
-  NameReverse = '-name'
+  Name = 'population',
+  NameReverse = '-population'
 }
 export const enum Condition {
   Clear = 'sunny',
