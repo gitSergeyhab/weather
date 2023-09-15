@@ -7,7 +7,8 @@ const UNKNOWN = 'unknown'
 export const round1 = (num: number) => Math.round(num * 10) / 10;
 
 export const getSimpleConditionCode = () => Object.entries(conditionCodes).reduce((acc, [name, list]) => {
-    list.forEach((code) => acc[code] = name);
+  /* eslint-disable-next-line */
+  list.forEach((code) => acc[code] = name);
     return acc;
   }, {} as {[key:number]: string})
 

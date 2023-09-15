@@ -5,18 +5,7 @@ import { CityItem } from "../city-item/city-item";
 import { contentSlice } from "../../store/content-slice/content-slice";
 import { DragArea } from "../../const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
-import { ICityItem } from "../../types/city-types";
-import { ICityWeather } from "../../types/weather-types";
-
-interface FilterCityByWeatherCities {
-  cities: ICityItem[],
-  weatherCities: ICityWeather[]
-}
-
-export const filterCitiesByWeatherCities = ({cities, weatherCities}: FilterCityByWeatherCities) => {
-  const weatherCitiesId = weatherCities.map((item) => item.cityId)
-  return cities.filter((item) => !weatherCitiesId.includes(item.id))
-}
+import { filterCitiesByWeatherCities } from "../../utils/filters";
 
 
 export function CitiesList () {

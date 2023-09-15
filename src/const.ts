@@ -59,10 +59,12 @@ export const enum ElementType {
   None = 'none'
 }
 
+export const EMPTY_CONDITION = 'EMPTY_CONDITION'
+
 export const emptyCityWeather: ICityWeather = {
   cityId: -1,
   cityName: '',
-  conditions: [],
+  conditions: [EMPTY_CONDITION],
   countryName: '',
   direction: '',
   id: -1,
