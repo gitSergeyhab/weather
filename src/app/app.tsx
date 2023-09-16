@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { CitiesContentSection } from "../components/content-section/content-section";
 import { TopButtonsPanel } from "../components/top-buttons-panel/top-buttons-panel";
 import { VisuallyHidden } from "../components/common-styles/common";
+import { MapComponent } from "../components/map-component/map-component";
 
 const WeatherApp = styled.section`
   display: flex;
@@ -37,6 +38,7 @@ export function App () {
           <TopButtonsPanel/>
           <CitiesContentSection/>
         </WeatherContent>
+        <MapComponent/>
       </WeatherApp>
     </main>
   )

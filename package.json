@@ -58,6 +58,7 @@
     "@mui/joy": "^5.0.0-alpha.52",
     "@mui/material": "^5.10.12",
     "@mui/system": "^5.10.12",
+    "@pbe/react-yandex-maps": "^1.2.4",
     "@reduxjs/toolkit": "^1.8.6",
     "async-mutex": "^0.4.0",
     "axios": "^0.27.2",

@@ -90,7 +90,8 @@ export interface IWeather {
 export interface ICityWeather extends IWeather {
   cityId: number,
   cityName: string
-  countryName: string
+  countryName: string,
+  coordinates: number[]
 }
 
 export type CityWeatherPromise  = Promise<AxiosResponse<WeatherType>>|null
