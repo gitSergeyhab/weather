@@ -8,6 +8,7 @@ import { deleteWeatherCityFromList, resetWeatherCityToEmptySlot, setCurrentWeath
 import { ReducerType } from "../../store/store";
 import { ConditionImg, IconStripsBig, IconWind } from "../icon-img/icon-img";
 import { BigCard, BigCardCity, BigCardConditions, BigCardContent, BigCardEmpty, BigCardHeader, BigCardTemperature, BigCardWind, BigCardWindInfo } from "../common-styles/big-card";
+import { setCenter } from "../../store/map-slice/map-slice";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
@@ -51,11 +52,16 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
     }
   }
 
+  const handleCardDoubleClick = () => {
+    dispatch(setCenter(cityWeather.coordinates))
+  }
+
   return (
     <BigCard
       onDragEnter={handleDragEnter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onDoubleClick={handleCardDoubleClick}
     >
       <BigCardHeader  onDragEnter={handleDragTopEnter}>
         <IconStripsBig />

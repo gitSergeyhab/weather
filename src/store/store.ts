@@ -3,13 +3,14 @@ import { AxiosInstance } from 'axios';
 import { sortFilterSlice } from './sort-filter-slice/sort-filter-slice';
 import { contentSlice } from './content-slice/content-slice';
 import { dndSlice } from './dnd-slice/dnd-slice';
+import { mapSlice } from './map-slice/map-slice';
 
 
 export const reducer = combineReducers({
   [contentSlice.name]: contentSlice.reducer,
   [dndSlice.name]: dndSlice.reducer,
-  [sortFilterSlice.name]: sortFilterSlice.reducer
-
+  [sortFilterSlice.name]: sortFilterSlice.reducer,
+  [mapSlice.name]: mapSlice.reducer
 });
 
 export const store = configureStore({
