@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { IForecast } from "../../types/weather-types";
 
 
-
-
 const ForecastTH = styled.th`
   background-color: var(--color-label-active);
   color: #FFF;
