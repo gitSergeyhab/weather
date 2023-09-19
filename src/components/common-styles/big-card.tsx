@@ -52,6 +52,7 @@ export const BigCard = styled.div.attrs({draggable: 'true'})`
   cursor: pointer;
   transition: filter var(--transition-base);
 
+
   &:active {
     filter: drop-shadow(0 8px 20px rgba(11, 23, 78, 0.5));
   }
@@ -95,34 +96,6 @@ export const BigCardWind = styled.span`
 export const BigCardEmpty = styled(BigCard)`
   pointer-events: none;
   min-height: 172px;
-  background-color: rgba(247, 248, 255, 0.3);
+  background-color: var(--color-blue-lightest);
   border: 2px dashed var(--color-border);
 `
-
-
-
-// .big-card--shadow {
-//   pointer-events: none;
-//   opacity: 0.3;
-//   background-color: var(--color-blue-light);
-// }
-
-// .big-card--shadow .big-card__header {
-//   background-color: var(--color-transparent);
-// }
-
-// .big-card--shadow .big-card__content {
-//   background-color: var(--color-blue-deep);
-// }
-
-// .big-card--shadow .big-card__city,
-// .big-card--shadow .big-card__temperature,
-// .big-card--shadow .big-card__wind-info {
-//   color: var(--color-text-white);
-// }
-
-
-
-// .big-card--empty.hidden-block {
-//   display: none;
-// }

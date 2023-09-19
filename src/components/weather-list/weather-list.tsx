@@ -27,7 +27,7 @@ export const WeatherContentHelp  = styled.div`
 
 export function WeatherList () {
   const {dragArea, dragCityId, dragCityPosition} = useSelector((state: ReducerType) => state.dndSlice)
-  const {weatherCityList} = useSelector((state: ReducerType) => state.citiesSlice);
+  const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
   const {filterChecked} = useSelector((state: ReducerType) => state.sortFilterSlice);
   const dispatch = useDispatch();
 

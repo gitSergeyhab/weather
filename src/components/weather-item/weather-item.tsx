@@ -9,13 +9,18 @@ import { ReducerType } from "../../store/store";
 import { ConditionImg, IconStripsBig, IconWind } from "../icon-img/icon-img";
 import { BigCard, BigCardCity, BigCardConditions, BigCardContent, BigCardEmpty, BigCardHeader, BigCardTemperature, BigCardWind, BigCardWindInfo } from "../common-styles/big-card";
 import { setCenter } from "../../store/map-slice/map-slice";
+import { BigCardSpinner } from "../spinners/spinners";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   const {cityId, cityName, conditions, countryName, direction, id, temp, windSpeed} = cityWeather
   const dispatch = useDispatch();
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
+  const {isCurrentWeatherCityLoading} = useSelector((state: ReducerType) => state.contentSlice);
 
+  if (id === -1 && isCurrentWeatherCityLoading)  {
+    return <BigCardSpinner/>
+  }
   if (id === -1) {
     return <BigCardEmpty/>
   }

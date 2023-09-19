@@ -16,7 +16,7 @@ export function CityItem({city}: {city: ICityItem}) {
 
   const { cityName, countryName, id } = city;
 
-  const {cashCityTemperature, currentWeatherCity} = useSelector((state: ReducerType) => state.citiesSlice);
+  const {cashCityTemperature, currentWeatherCity} = useSelector((state: ReducerType) => state.contentSlice);
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
   const temp = cashCityTemperature[id];
   const temperature = temp !== undefined ? getShownTemperature(temp) : '';

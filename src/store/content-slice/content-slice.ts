@@ -5,6 +5,7 @@ import { ICityItem } from "../../types/city-types";
 import { ICityWeather } from "../../types/weather-types";
 import { CityWeatherPosition, DragArea, emptyCityWeather } from "../../const";
 import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList, insertWeatherCityToEmptySlot, removeWeatherCityFromList, replaceWeatherCityToEmptySlot } from "../../utils/reducer-utils";
+import { refetchWeather } from "./weather-thunk";
 
 export interface InitialCitiesState {
   cities: ICityItem[],
@@ -14,6 +15,7 @@ export interface InitialCitiesState {
   currentWeatherCity: ICityWeather|null,
   prevCityId: number|null,
   prevCityPosition: CityWeatherPosition,
+  isCurrentWeatherCityLoading: boolean
 };
 
 const initialState: InitialCitiesState = {
@@ -23,6 +25,7 @@ const initialState: InitialCitiesState = {
   currentWeatherCity: null,
   prevCityId: null,
   prevCityPosition: CityWeatherPosition.None,
+  isCurrentWeatherCityLoading: false
 };
 
 interface SetWeatherCityListByDrag {
@@ -32,7 +35,7 @@ interface SetWeatherCityListByDrag {
 }
 
 export const contentSlice = createSlice({
-  name: 'citiesSlice',
+  name: 'contentSlice',
   initialState,
   reducers: {
 
@@ -113,6 +116,15 @@ export const contentSlice = createSlice({
     builder
       .addCase(fetchCities.fulfilled, (state, action) => {
         state.cities = action.payload || []
+      })
+      .addCase(refetchWeather.fulfilled, (state) => {
+        state.isCurrentWeatherCityLoading = false;
+      })
+      .addCase(refetchWeather.rejected, (state) => {
+        state.isCurrentWeatherCityLoading = false;
+      })
+      .addCase(refetchWeather.pending, (state) => {
+        state.isCurrentWeatherCityLoading = true;
       })
   },
 })

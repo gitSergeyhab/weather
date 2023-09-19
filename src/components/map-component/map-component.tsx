@@ -13,7 +13,7 @@ import { MAP_BALLOON_ID, mapSetting } from '../../const';
 const {modules, options, zoom} = mapSetting;
 
 export function MapComponent () {
-  const {weatherCityList} = useSelector((state: ReducerType) => state.citiesSlice);
+  const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
   const {center, portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
   const dispatch = useDispatch();
 
