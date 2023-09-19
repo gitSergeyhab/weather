@@ -12,7 +12,6 @@ import { ForecastHeaderRow } from "../forecast-table-rows/forecast-header-row";
 
 
 export function ForecastTable () {
-
   const {weatherForecastList} = useSelector((state: ReducerType) => state.mapSlice)
   if (!weatherForecastList.length) return null;
 

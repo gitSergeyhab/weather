@@ -1,5 +1,4 @@
 import ScaleLoader from 'react-spinners/ScaleLoader';
-// import styled from 'styled-components';
 import styled, { css } from 'styled-components';
 import { BigCard } from '../common-styles/big-card';
 

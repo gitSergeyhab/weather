@@ -1,34 +1,17 @@
-import { getDirectionFromDeg, getSimpleConditionCode } from "../../utils/utils";
+import { FILTER_DATA, SORT_DATA } from "../../const/sort-filter-data";
 import { CityNameInput } from "../city-name-input/city-name-input";
 import { SortOrderButton } from "../sort-order-button/sort-order-button";
 import { TopButtonSection } from "../top-buttons-section/top-buttons-section";
 import { TopButtonSector } from "../top-buttons-sector/top-buttons-sector";
 
-const sortData = [
-  {id: 'alphabet-sort-reverse', ariaLabel: 'Сортировка по населению: сначала больше', name: 'alphabet-sort', type: 'radio', version: 'up'},
-  {id: 'alphabet-sort', ariaLabel: 'Сортировка по населению: сначала меньшее', name: 'alphabet-sort', type: 'radio', version: 'down'},
-];
 
-const filterData = [
-  {id: 'sunny', ariaLabel: 'Солнечно', name: 'weather-conditions', type: 'checkbox', version: 'sunny'},
-  {id: 'cloudy', ariaLabel: 'Облачно', name: 'weather-conditions', type: 'checkbox', version: 'cloudy'},
-  {id: 'drizzle', ariaLabel: 'Морось', name: 'weather-conditions', type: 'checkbox', version: 'drizzle'},
-  {id: 'mist', ariaLabel: 'Туман', name: 'weather-conditions', type: 'checkbox', version: 'mist'},
-  {id: 'rainy', ariaLabel: 'Дождливо', name: 'weather-conditions', type: 'checkbox', version: 'rainy'},
-  {id: 'snowy', ariaLabel: 'Снежно', name: 'weather-conditions', type: 'checkbox', version: 'snowy'},
-  {id: 'blizzard', ariaLabel: 'Гроза', name: 'weather-conditions', type: 'checkbox', version: 'blizzard'},
-  {id: 'stormy', ariaLabel: 'Торнадо', name: 'weather-conditions', type: 'checkbox', version: 'stormy'},
-
-  // {id: 'meteorite', ariaLabel: 'Метеоритный дождь', name: 'weather-conditions', type: 'checkbox', version: 'meteorite'},
-]
 
 export function TopButtonsPanel () {
-  console.log(getSimpleConditionCode(), getDirectionFromDeg(120))
 
-  const sortButtons = sortData.map(({ariaLabel, id, name, type, version}) =>
+  const sortButtons = SORT_DATA.map(({ariaLabel, id, name, type, version}) =>
     <SortOrderButton key={id} ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>);
 
-  const filterButtons = filterData.map(({ariaLabel, id, name, type, version}) =>
+  const filterButtons = FILTER_DATA.map(({ariaLabel, id, name, type, version}) =>
     <SortOrderButton key={id} ariaLabel={ariaLabel} id={id} name={name} type={type} version={version}/>)
 
   return (

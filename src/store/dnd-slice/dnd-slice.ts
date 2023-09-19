@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CityWeatherPosition, DragArea, ElementType } from "../../const";
+import { CityWeatherPosition, DragArea, ElementType } from "../../const/const";
 
 export interface InitialCitiesState {
   dragCityId: number|null,

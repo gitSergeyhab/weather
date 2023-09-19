@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CitySort } from "../../const";
+import { CitySort } from "../../const/const";
 
 
 export interface InitialSortFilterState {

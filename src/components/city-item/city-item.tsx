@@ -4,14 +4,13 @@ import { ICityItem } from "../../types/city-types";
 import { fetchWeather, refetchWeather } from "../../store/content-slice/weather-thunk";
 import { ReducerType } from "../../store/store";
 import { getShownTemperature } from "../../utils/utils";
-import { DragArea } from "../../const";
+import { DragArea } from "../../const/const";
 import { setWeatherCityToEmptySlot } from "../../store/content-slice/content-slice";
 import { IconStripsSmall } from "../icon-img/icon-img";
 import { SmallCard, SmallCardCity, SmallCardTemperature } from "../common-styles/small-card";
 
 
 export function CityItem({city}: {city: ICityItem}) {
-
   const dispatch = useDispatch();
 
   const { cityName, countryName, id } = city;

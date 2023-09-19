@@ -1,4 +1,4 @@
-import { EMPTY_CONDITION } from "../const";
+import { EMPTY_CONDITION } from "../const/const";
 import { ICityItem } from "../types/city-types";
 import { ICityWeather } from "../types/weather-types"
 
@@ -14,17 +14,18 @@ const compareLists = (cityConditions: string[], filterConditions: string[]) => {
 }
 
 interface ConditionWeatherCityFilter {
-  weatherCities: ICityWeather[],
-  filterConditions: string[]
+  weatherCityList: ICityWeather[],
+  filterChecked: string[]
 }
+
 
 /**
  * фильтр. оставляет только города weatherCities со всеми filterConditions и пустой город (с EMPTY_CONDITION)
  * @param param0
  * @returns
  */
-export const filterWeatherCitiesByConditions = ({weatherCities, filterConditions}: ConditionWeatherCityFilter) =>
-  weatherCities.filter((item) => compareLists(item.conditions, filterConditions));
+export const filterWeatherCitiesByConditions = ({weatherCityList, filterChecked}: ConditionWeatherCityFilter) =>
+weatherCityList.filter((item) => compareLists(item.conditions, filterChecked));
 
 
   interface FilterCityByWeatherCities {

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { iconFilterTypes } from "../../const";
+import { iconFilterTypes } from "../../const/const";
 
 const smallCss = css`
 width: 16px;

@@ -20,7 +20,6 @@ export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityIt
   const direction = getDirectionFromDeg(deg);
   const windSpeed = getWindString(speed, gust)
   const coordinates = [city.lat, city.lon];
-  // console.log(weather.weather, 'weather[]')
   return {
     cityId: city.id,
     cityName: city.cityName,

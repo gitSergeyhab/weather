@@ -6,8 +6,8 @@ import { ReducerType } from "../../store/store";
 import { fetchCities } from "../../store/content-slice/cities-thunk";
 import { InputWrapperSearch } from "../common-styles/inputs";
 
-export function CityNameInput () {
 
+export function CityNameInput () {
   const [cityName, setCityName] = useState('');
   const debouncedCityName = useDebounce(cityName, 1000);
   const dispatch = useDispatch();
@@ -16,13 +16,12 @@ export function CityNameInput () {
   useEffect(() => {
     const nameTrim = debouncedCityName.trim();
     if (nameTrim) {
-      console.log({citySort, nameTrim}, 'useEffect')
       dispatch(fetchCities({value: nameTrim, sort: citySort}) as unknown as AnyAction)
     }
   }, [debouncedCityName, citySort, dispatch])
 
-  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (evt) =>
-    setCityName(evt.currentTarget.value)
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (evt) => setCityName(evt.currentTarget.value);
+
   return (
     <InputWrapperSearch>
       <input id="search" type="search" name="city-search" onChange={handleInputChange} placeholder="Название города" />

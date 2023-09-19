@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { WeatherItem } from "../weather-item/weather-item";
 import { ReducerType } from "../../store/store";
 import { setDragArea, setDragCityId, setDragCityPosition } from "../../store/dnd-slice/dnd-slice";
-import { CityWeatherPosition, DragArea } from "../../const";
+import { CityWeatherPosition, DragArea } from "../../const/const";
 import { setWeatherCityListByDrag } from "../../store/content-slice/content-slice";
 import { filterWeatherCitiesByConditions } from "../../utils/filters";
 import { ContentBigCards } from "../common-styles/content-cards";
@@ -40,7 +40,7 @@ export function WeatherList () {
   }, [weatherCityList])
 
 
-  const filteredWeatherCities = filterWeatherCitiesByConditions({weatherCities: weatherCityList, filterConditions: filterChecked})
+  const filteredWeatherCities = filterWeatherCitiesByConditions({ weatherCityList,  filterChecked })
   const citiesElements = filteredWeatherCities.map((item) => <WeatherItem key={item.id} cityWeather={item}/>)
 
   const handleDragEnter: DragEventHandler = (evt) => {

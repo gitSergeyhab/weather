@@ -1,4 +1,4 @@
-import { conditionCodes } from "../const"
+import { conditionCodes } from "../const/const"
 
 const CIRCLE_DEG = 360;
 const WIND_DIRECTIONS = ['С', 'СВ', 'В', 'ЮВ','Ю', 'ЮЗ','З', 'СЗ',];

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { CitiesList } from "../cities-list/cities-list";
 import { WeatherList } from "../weather-list/weather-list";
-import { DragArea } from "../../const";
+import { DragArea } from "../../const/const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
 import { HiddenH2 } from "../common-styles/common";
 
@@ -17,22 +17,17 @@ const Section = styled.section`
 `
 
 export function CitiesContentSection () {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleDragLeave: DragEventHandler = (evt) => {
     evt.preventDefault()
-
-    const { relatedTarget, currentTarget } = evt
+    const { relatedTarget, currentTarget } = evt;
     if (relatedTarget instanceof Element && !currentTarget.contains(relatedTarget)) {
-      console.log('CitiesContentSection handleDragLeave')
-      dispatch(setDragArea(DragArea.None))
+      dispatch(setDragArea(DragArea.None));
     }
   }
 
-  const handleDragOver: DragEventHandler = (evt) => {
-    evt.preventDefault()
-
-  }
+  const handleDragOver: DragEventHandler = (evt) =>  evt.preventDefault()
 
   return (
     <Section

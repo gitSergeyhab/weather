@@ -1,4 +1,4 @@
-import { CityWeatherPosition, emptyCityWeather } from "../const";
+import { CityWeatherPosition, emptyCityWeather } from "../const/const";
 import { ICityWeather } from "../types/weather-types"
 
 
@@ -34,7 +34,6 @@ export const insertEmptyWeatherCityToList = ({originList, dragCityId, dragCityPo
   if (cityIndex === -1 || (dragCityId === prevCityId && dragCityPosition === prevCityPosition)) return originList;
 
   const insertIndex = dragCityPosition === CityWeatherPosition.Top ? cityIndex : cityIndex + 1;
-  console.log({insertIndex})
   const newList = [...noEmptyList.slice(0, insertIndex), emptyCityWeather, ...noEmptyList.slice(insertIndex)]
   return newList;
 }

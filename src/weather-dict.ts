@@ -1,4 +1,4 @@
-import { Condition } from "./const"
+import { Condition } from "./const/const"
 
 export const weatherDict: {[id: number]: Condition[]} = {
 200: [Condition.Thunderstorm, Condition.Rain],

@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { GEO_DB_API_HOST, GEO_DB_API_KEY, GEO_DB_API_URL, MIN_CITY_POPULATION } from '../const';
-
-// https://rapidapi.com/wirefreethought/api/geodb-cities/
+import { GEO_DB_API_HOST, GEO_DB_API_KEY, GEO_DB_API_URL, MIN_CITY_POPULATION } from '../const/api-settings';
 
 
 export const createGeoDbApi = () => {
@@ -16,12 +14,9 @@ export const createGeoDbApi = () => {
       types: 'city',
       limit: 10,
       languageCode: 'RU'
-
     }
   })
-
   return api;
 }
-
 
 export const geoDbApi = createGeoDbApi();

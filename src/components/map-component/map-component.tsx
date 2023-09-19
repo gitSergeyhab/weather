@@ -7,7 +7,8 @@ import { setCenter } from '../../store/map-slice/map-slice';
 import { Portal } from '../map-portal/map-portal';
 import { PortalCityWeather } from '../portal-city-weather/portal-city-weather';
 import { MapCityPoint } from '../map-city-point/map-city-point';
-import { MAP_BALLOON_ID, mapSetting } from '../../const';
+import { filterWeatherCitiesByConditions } from '../../utils/filters';
+import { MAP_BALLOON_ID, mapSetting } from '../../const/map-settings';
 
 
 const {modules, options, zoom} = mapSetting;
@@ -15,19 +16,18 @@ const {modules, options, zoom} = mapSetting;
 export function MapComponent () {
   const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
   const {center, portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
+  const {filterChecked} = useSelector((state: ReducerType) => state.sortFilterSlice);
   const dispatch = useDispatch();
 
-  const cities = weatherCityList.filter((item) => item.cityId !== -1);
-  console.log({weatherCityList})
-
+  const filteredWeatherCities = filterWeatherCitiesByConditions({ weatherCityList,  filterChecked })
 
   useEffect(() => {
-    if (cities.length) {
-      dispatch(setCenter(cities[0].coordinates))
+    if (filteredWeatherCities.length) {
+      dispatch(setCenter(filteredWeatherCities[0].coordinates))
     }
   }, [])
 
-  const points = cities.map((item) => <MapCityPoint point={item} key={item.cityId} />)
+  const points = filteredWeatherCities.map((item) => <MapCityPoint point={item} key={item.cityId} />)
   const balloon = portalWeather ?
     <Portal elementId={MAP_BALLOON_ID}><PortalCityWeather cityWeather={portalWeather}/></Portal> : null
 

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { CityResponseData } from "../../types/city-types";
-import { CitySort } from "../../const";
+import { CitySort } from "../../const/const";
 import { adaptServerCityToCityItem } from "../../utils/adapters";
 import { geoDbApi } from "../../api/geo-db-cities-api";
 import { getUniqueCities } from "../../utils/get-unique-cities";
@@ -10,7 +10,6 @@ import { getUniqueCities } from "../../utils/get-unique-cities";
 type FetchCities = {
   value: string,
   sort: CitySort
-
 }
 
 export const fetchCities = createAsyncThunk(
@@ -20,11 +19,8 @@ export const fetchCities = createAsyncThunk(
       const result = await geoDbApi.get<CityResponseData> (`/cities`, {
         params: { sort, namePrefix: value }
       })
-
-      console.log(result.data.data, 'result');
       const uniqueCities = getUniqueCities(result.data.data)
       const adaptedCities = uniqueCities.map(adaptServerCityToCityItem);
-      console.log({adaptedCities})
       return adaptedCities;
     } catch (err) {
       console.log({err})

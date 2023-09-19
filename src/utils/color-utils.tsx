@@ -1,4 +1,4 @@
-import { BLUE, GREEN, RED } from "../const";
+import { BLUE, GREEN, RED } from "../const/const";
 
 const getMeddleDigit = (max: number, min: number, fraction: number) => {
   const range = max - min;
@@ -58,8 +58,6 @@ export const getGustColor = ({value} : {value: number}) => {
     red: [255, ...RED.slice(4)]})
   return rgb;
 }
-
-
 
 export const getPressuresColor = ({value} : {value: number}) => {
   const rgb = getRGB({min: 700, max: 800, current: value,

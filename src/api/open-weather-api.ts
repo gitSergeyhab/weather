@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL } from '../const';
+import { OPEN_WEATHER_API_KEY, OPEN_WEATHER_API_URL } from '../const/api-settings';
 
 export const createWeatherApi = () => {
   const api = axios.create({

@@ -1,20 +1,13 @@
-import { ICityWeather } from "./types/weather-types";
+import { ICityWeather } from "../types/weather-types";
 
-export const GEO_DB_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
-export const GEO_DB_API_KEY = 'eb1ae116f7msh7396973c512dd66p16b1c6jsn92a17afd11e5';
-export const GEO_DB_API_HOST = 'wft-geo-db.p.rapidapi.com';
-export const  OPEN_WEATHER_API_KEY = 'fc0aefbd1cdb4db096f3791ebe1a7687';
-export const OPEN_WEATHER_API_URL = 'http://api.openweathermap.org/data/2.5'
 
-export const MIN_CITY_POPULATION = 400000;
-
-export const iconSortTypes = ['arrow-down', 'arrow-up']
 export const iconFilterTypes = ['sunny', 'cloudy', 'drizzle', 'mist', 'rainy','snowy', 'stormy', 'blizzard'];
 
 export const enum CitySort {
   Name = 'population',
   NameReverse = '-population'
 }
+
 export const enum Condition {
   Clear = 'sunny',
   Clouds = 'cloudy',
@@ -58,7 +51,7 @@ export const enum ElementType {
   None = 'none'
 }
 
-export const EMPTY_CONDITION = 'EMPTY_CONDITION'
+export const EMPTY_CONDITION = 'EMPTY_CONDITION';
 
 export const emptyCityWeather: ICityWeather = {
   cityId: -1,
@@ -76,40 +69,7 @@ export const emptyCityWeather: ICityWeather = {
 };
 
 
-// MAP
-export const MAP_BALLOON_ID = `balloon-id`;
-
-export const MAP_CITY_OPTIONS = {
-  minHeight: 200,
-  minWidth: 300,
-  preset: 'islands#nightStretchyIcon', // список темплейтов на сайте яндекса
-}
-
-export const mapSetting = {
-  options: { maxZoom: 10, minZoom: 3},
-  modules: [
-    'geoObject.addon.balloon',
-    'geoObject.addon.hint'
-  ],
-  zoom: 4
-}
-
-export const Color = {
-  SupperLow: `rgb(103, 1, 140)`,
-  Lowest: `rgb(25, 1, 110)`,
-  Low: `rgb(1, 14, 110)`,
-  MiddleLow: `rgb(1, 54, 110)`,
-  Middle: 'rgb(1, 110, 114)',
-  MiddleHigh: 'rgb(37, 148, 0)',
-  High: 'rgb(242, 250, 0)',
-  Highest: 'rgb(255, 170, 0)',
-  Supper: 'rgb(179, 30, 0)',
-}
-
-
 export const RED = [100, 25, 1, 1, 1, 35, 240, 255, 180];
 export const GREEN = [1, 1, 1, 1, 110, 150, 250, 170, 30];
 export const BLUE = [180, 150, 120, 90, 60, 30, 0, 0, 0];
-
-
 

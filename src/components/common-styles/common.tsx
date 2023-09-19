@@ -26,26 +26,3 @@ export const CardDragged = css`
     display: none;
   }
 `
-
-
-
-// .card.active .big-card__city {
-//   color: var(--color-text-white);
-// }
-
-// .card.active .big-card__temperature,
-// .card.active .big-card__wind-info {
-//   color: var(--color-text-white);
-// }
-
-// .card.active .big-card__header {
-//   background-color: var(--color-blue-light);
-// }
-
-// .card.active .big-card__content {
-//   background-color: var(--color-blue-main);
-// }
-
-// .hidden-block {
-//   display: none;
-// }

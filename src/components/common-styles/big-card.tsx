@@ -22,7 +22,6 @@ export const BigCardContent = styled.div`
   padding: 16px 24px 24px 20px;
   background-color: var(--color-light-grey);
   transition: background-color ease-in-out 0.3s;
-
 `;
 
 export const BigCardWindInfo = styled.span`
@@ -51,7 +50,6 @@ export const BigCard = styled.div.attrs({draggable: 'true'})`
   outline: none;
   cursor: pointer;
   transition: filter var(--transition-base);
-
 
   &:active {
     filter: drop-shadow(0 8px 20px rgba(11, 23, 78, 0.5));
@@ -98,4 +96,4 @@ export const BigCardEmpty = styled(BigCard)`
   min-height: 172px;
   background-color: var(--color-blue-lightest);
   border: 2px dashed var(--color-border);
-`
+`;

@@ -11,11 +11,11 @@ const SortSection = styled.section`
     padding: 12px 20px;
     background-color: var(--color-blue-main);
   }
-`
+`;
 
 const HiddenHeader = styled.h2`
   ${VisuallyHidden}
-`
+`;
 
 export function TopButtonSection ({children}: {children: ReactNode}) {
   return (
