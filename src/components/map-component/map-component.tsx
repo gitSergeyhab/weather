@@ -18,6 +18,7 @@ export function MapComponent () {
   const dispatch = useDispatch();
 
   const cities = weatherCityList.filter((item) => item.cityId !== -1);
+  console.log({weatherCityList})
 
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export function MapComponent () {
     }
   }, [])
 
-  const points = weatherCityList.map((item) => <MapCityPoint point={item} key={item.cityId} />)
+  const points = cities.map((item) => <MapCityPoint point={item} key={item.cityId} />)
   const balloon = portalWeather ?
     <Portal elementId={MAP_BALLOON_ID}><PortalCityWeather cityWeather={portalWeather}/></Portal> : null
 
