@@ -47,6 +47,9 @@ export const contentSlice = createSlice({
     setDefaultWeatherCities(state, {payload}: {payload: ICityWeather[]}){
       state.weatherCityList = payload;
     },
+    setWeatherCityByIndex(state, {payload}: {payload: {weather: ICityWeather, index: number}}){
+      state.weatherCityList[payload.index] = payload.weather
+    },
 
     setWeatherCityListByDrag(state, {payload}: {payload: SetWeatherCityListByDrag}) {
       const {dragArea, dragCityId, dragCityPosition} = payload;
@@ -121,6 +124,7 @@ export const {
   setWeatherCityToEmptySlot,
   resetWeatherCityToEmptySlot,
   deleteWeatherCityFromList,
-  setDefaultWeatherCities
+  setDefaultWeatherCities,
+  setWeatherCityByIndex
   } = contentSlice.actions;
 

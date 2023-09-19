@@ -8,15 +8,14 @@ import { store } from './store/store';
 import 'react-toastify/dist/ReactToastify.css';
 import 'normalize.css';
 import './css/style.css';
-import { getWeatherCitiesFromLS } from './utils/storage-utils';
-import { setDefaultWeatherCities } from './store/content-slice/content-slice';
+import { fetchWeatherList } from './store/content-slice/weather-thunk';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const defaultCitiesWeatherList = getWeatherCitiesFromLS();
-store.dispatch(setDefaultWeatherCities(defaultCitiesWeatherList))
+
+store.dispatch(fetchWeatherList())
 
 root.render(
   <Provider store={store}>
