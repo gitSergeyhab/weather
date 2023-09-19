@@ -1,7 +1,4 @@
-import { AxiosResponse } from "axios";
-
 export const iconFilterTypes = ['sunny', 'cloudy', 'drizzle', 'mist',  'rainy', 'snowy', 'stormy', 'blizzard'];
-
 
 
 export const enum Condition {
@@ -35,8 +32,9 @@ export interface Main {
   grnd_level: number;
 }
 
-export interface Rain {
-  "1h": number;
+export interface Precipitation {
+  "1h"?: number;
+  "3h"?: number;
 }
 
 export interface Sys {
@@ -68,7 +66,8 @@ export interface WeatherType {
   main:       Main;
   visibility: number;
   wind:       Wind;
-  rain:       Rain;
+  rain?:      Precipitation;
+  snow?:      Precipitation;
   clouds:     Clouds;
   dt:         number;
   sys:        Sys;
@@ -85,14 +84,32 @@ export interface IWeather {
   temp: number,
   windSpeed: string,
   direction: string,
+  dt: number
 }
 
 export interface ICityWeather extends IWeather {
   cityId: number,
   cityName: string
   countryName: string,
-  coordinates: number[]
+  coordinates: number[],
+  speed: number;
+  gust:  number;
 }
 
-export type CityWeatherPromise  = Promise<AxiosResponse<WeatherType>>|null
-// export type CityWeatherPromise  = Promise<WeatherType>|null
+export interface ForecastDate {
+  list: WeatherType[]
+}
+
+
+
+export interface IForecast {
+  conditions: string[],
+  direction: string,
+  id: number,
+  temp: number,
+  gust: number,
+  speed: number,
+  stringDate: string,
+  pressure: number,
+  precipitation: number
+}

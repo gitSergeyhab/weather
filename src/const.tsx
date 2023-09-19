@@ -70,7 +70,10 @@ export const emptyCityWeather: ICityWeather = {
   id: -1,
   temp: -1000,
   windSpeed: '',
-  coordinates: []
+  coordinates: [],
+  dt: 0,
+  gust: 0,
+  speed: 0
 };
 
 
@@ -92,3 +95,59 @@ export const mapSetting = {
   zoom: 4
 }
 
+export const Color = {
+  SupperLow: `rgb(103, 1, 140)`,
+  Lowest: `rgb(25, 1, 110)`,
+  Low: `rgb(1, 14, 110)`,
+  MiddleLow: `rgb(1, 54, 110)`,
+  Middle: 'rgb(1, 110, 114)',
+  MiddleHigh: 'rgb(37, 148, 0)',
+  High: 'rgb(242, 250, 0)',
+  Highest: 'rgb(255, 170, 0)',
+  Supper: 'rgb(179, 30, 0)',
+}
+
+
+export const RED = [100, 25, 1, 1, 1, 35, 240, 255, 180];
+export const GREEN = [1, 1, 1, 1, 110, 150, 250, 170, 30];
+export const BLUE = [180, 150, 120, 90, 60, 30, 0, 0, 0];
+
+
+const getMeddleDigit = (max: number, min: number, fraction: number) => {
+  const range = max - min;
+  return Math.round(min + fraction * range);
+}
+
+const getMaxMinDigit = (numbers: number[], minPoint: number, maxPoint: number) => {
+  const [minDigit, maxDigit] = [numbers[minPoint], numbers[maxPoint]];
+  return {minDigit, maxDigit}
+
+}
+
+const getOneColor = (min: number, max: number, current: number, digits: number[], length: number) => {
+  if (current < min) return digits[0];
+  if (current > max) return digits[length-1];
+  const range = max - min;
+  const value = current - min;
+  const point = value / range * length;
+  const [minPoint, maxPoint] = [Math.floor(point), Math.ceil(point)];
+  const {maxDigit, minDigit} = getMaxMinDigit(digits, minPoint, maxPoint);
+  const fraction = point - minPoint;
+  const middleDigit = getMeddleDigit(maxDigit, minDigit, fraction);
+  return middleDigit;
+}
+
+
+interface GetRGB {
+  min: number,
+  max: number,
+  current: number,
+  red: number[],
+  green: number[],
+  blue: number[]
+}
+export const getRGB = ({min, max, current, blue, green, red}: GetRGB) => {
+  const colorDigits = [red, green, blue]
+    .map((item) => getOneColor(min, max, current, item, blue.length));
+  return `rgb(${colorDigits.join(', ')})`
+}

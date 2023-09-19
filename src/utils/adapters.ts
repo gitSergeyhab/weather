@@ -1,7 +1,8 @@
 import { CityData, ICityItem } from "../types/city-types";
-import { ICityWeather, WeatherType } from "../types/weather-types";
+import { ICityWeather, IForecast, WeatherType } from "../types/weather-types";
 import { weatherDict } from "../weather-dict";
-import { getDirectionFromDeg, getWindString } from "./utils";
+import { getTableDate } from "./date-utils";
+import { getDirectionFromDeg, getWindString, round1 } from "./utils";
 
 
 export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
@@ -29,6 +30,31 @@ export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityIt
     id: weather.id,
     temp: weather.main.temp,
     windSpeed,
-    coordinates
+    coordinates,
+    gust,
+    speed,
+    dt: weather.dt
  }
+}
+
+const getPrecipitation = (snow?: number, rain?: number) => round1((snow || 0) + (rain || 0)) ;
+
+export const adaptForecastToClient = (weather: WeatherType): IForecast => {
+  const {deg, gust, speed} = weather.wind;
+  const weatherId = weather.weather[0].id
+  const conditions = weatherDict[weatherId] || [];
+  const direction = getDirectionFromDeg(deg);
+  const stringDate = getTableDate(weather.dt);
+  const precipitation = getPrecipitation(weather.rain?.["3h"], weather.snow?.["3h"]);
+  return {
+    conditions,
+    direction,
+    stringDate,
+    gust: round1(gust),
+    id: Math.random() * Math.random(),
+    speed: round1(speed),
+    temp: Math.round(weather.main.temp),
+    pressure:  Math.round(0.750064 * weather.main.pressure),
+    precipitation
+  }
 }

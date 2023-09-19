@@ -8,25 +8,20 @@
 
 .ymaps-2-1-79-balloon {
   box-shadow: none !important;
-  width: 350px !important;
-  height: 178px !important;
 }
 
 .ymaps-2-1-79-balloon__content {
   padding: 0 !important;
-  /* background: transparent !important; */
   margin: 0 !important;
-  width: 350px !important;
-  height: 178px !important;
-}
-
-.ymaps-2-1-79-balloon__layout {
-  background: transparent !important;
-  border: none !important;
 }
 
 .ymaps-2-1-79-balloon__content ymaps {
-  width: 350px !important;
-  height: 178px !important;
+  width: 500px !important;
+  height: 340px !important;
   z-index: 5;
+}
+
+#balloon-id > div {
+  overflow-x: scroll;
+  width: 100%;
 }

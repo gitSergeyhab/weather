@@ -1,14 +1,19 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { iconFilterTypes } from "../../const";
 
+const smallCss = css`
+width: 16px;
+height: 16px;`
 
-export const IconImg = styled.span<{version?: string}>`
+
+export const IconImg = styled.span<{version?: string, small?: boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   width: 24px;
   height: 24px;
+  ${({small}) => small ? smallCss : ''}
 
   background-repeat: no-repeat;
   background-position: center;
@@ -16,6 +21,7 @@ export const IconImg = styled.span<{version?: string}>`
 `;
 
 export const ConditionImg = styled(IconImg)`
+
   background-image: ${({version}) => version && iconFilterTypes.includes(version) ?
   `url('../../assets/img/icon/icon-${version}.svg')` : `url('../../assets/img/icon/icon-wind.svg')`} ;
 `;
