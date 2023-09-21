@@ -4,8 +4,9 @@ import { ICityItem } from "../../types/city-types";
 import { adaptWeatherToClientWithCity } from "../../utils/adapters";
 import { openWeatherApi } from "../../api/open-weather-api";
 import { WeatherType } from "../../types/weather-types";
-import { addCashCityTemperature, setCurrentWeatherCity, setWeatherCityByIndex, setWeatherCityToEmptySlot } from "./content-slice";
+import { setCurrentWeatherCity, setWeatherCityByIndex, setWeatherCityToEmptySlot } from "./content-slice";
 import { getWeatherCitiesFromLS } from "../../utils/storage-utils";
+import { addCashCityTemperature } from "../cities-slice/cities-slice";
 
 
 export const fetchWeather = createAsyncThunk(
@@ -47,10 +48,15 @@ export const fetchWeatherList = createAsyncThunk(
   async (_nothing: undefined, {dispatch}) => {
     try {
       const list = getWeatherCitiesFromLS();
+      console.log('{list}__________________________________', {list})
+
       list.forEach((item, index) => {
-        const {cityId, cityName, coordinates, countryName} = item;
-        const [lon, lat ]= coordinates;
+        const {cityId, cityName, lat, lon, countryName} = item;
         const city = {id: cityId, cityName, countryName, lat, lon }
+        console.log('{cityName, lat, lon}__________________________________')
+
+        console.log({cityName, lat, lon})
+        console.log('{cityName, lat, lon}__________________________________')
         openWeatherApi.get<WeatherType> (`/weather`, { params: { lat, lon } })
           .then(({data}) => {
             const cityWeather = adaptWeatherToClientWithCity(data, city);

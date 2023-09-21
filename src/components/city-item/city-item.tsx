@@ -12,10 +12,11 @@ import { SmallCard, SmallCardCity, SmallCardTemperature } from "../common-styles
 
 export function CityItem({city}: {city: ICityItem}) {
   const dispatch = useDispatch();
-
+console.log('CityItem', city.id)
   const { cityName, countryName, id } = city;
 
-  const {cashCityTemperature, currentWeatherCity} = useSelector((state: ReducerType) => state.contentSlice);
+  const {currentWeatherCity} = useSelector((state: ReducerType) => state.contentSlice);
+  const {cashCityTemperature} = useSelector((state: ReducerType) => state.citiesSlice);
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
   const temp = cashCityTemperature[id];
   const temperature = temp !== undefined ? getShownTemperature(temp) : '';

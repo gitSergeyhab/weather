@@ -44,6 +44,7 @@ const Div = styled.div`
 
 export function PortalCityWeather({cityWeather}: {cityWeather: ICityWeather}) {
   const { cityName, conditions, direction, temp, windSpeed} = cityWeather;
+  console.log('PortalCityWeather', cityWeather.cityId)
 
   const {isForecastLoading} = useSelector((state: ReducerType) => state.mapSlice);
 

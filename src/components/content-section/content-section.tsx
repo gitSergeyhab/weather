@@ -18,6 +18,7 @@ const Section = styled.section`
 
 export function CitiesContentSection () {
   const dispatch = useDispatch();
+  console.log('CitiesContentSection')
 
   const handleDragLeave: DragEventHandler = (evt) => {
     evt.preventDefault()
@@ -35,8 +36,8 @@ export function CitiesContentSection () {
       onDragOver={handleDragOver}
     >
       <HiddenH2>Результаты сортировки</HiddenH2>
-        <CitiesList/>
-        <WeatherList/>
+      <CitiesList/>
+      <WeatherList/>
     </Section>
   )
 

@@ -20,6 +20,7 @@ export const fetchCities = createAsyncThunk(
         params: { sort, namePrefix: value }
       })
       const uniqueCities = getUniqueCities(result.data.data)
+      console.log({uniqueCities, result})
       const adaptedCities = uniqueCities.map(adaptServerCityToCityItem);
       return adaptedCities;
     } catch (err) {

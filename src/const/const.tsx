@@ -62,10 +62,11 @@ export const emptyCityWeather: ICityWeather = {
   id: -1,
   temp: -1000,
   windSpeed: '',
-  coordinates: [],
   dt: 0,
   gust: 0,
-  speed: 0
+  speed: 0,
+  lat: 0,
+  lon: 0
 };
 
 

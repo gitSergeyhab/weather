@@ -15,20 +15,20 @@ const getProperties = (cityName: string) => ({
 })
 
 export function MapCityPoint({point}: {point:ICityWeather}) {
-  const {cityName, coordinates} = point;
+  const {cityName, lat, lon} = point;
   const dispatch = useDispatch();
   const properties = getProperties(cityName)
+  console.log('MapCityPoint', point.cityId)
 
   const handlePointClick = () => {
     dispatch(setPortalWeather(null))
     setTimeout(() => {dispatch(setPortalWeather(point))}, 0)
-    const [lat, lon] = coordinates;
     dispatch(fetchForecast({lat, lon}) as unknown as AnyAction)
   }
 
   return (
     <Placemark
-        geometry={ coordinates }
+        geometry={ [lat, lon] }
         options={MAP_CITY_OPTIONS}
         properties={properties}
         onClick={handlePointClick}

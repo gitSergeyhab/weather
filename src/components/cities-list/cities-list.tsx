@@ -2,17 +2,20 @@ import { useDispatch, useSelector } from "react-redux"
 import { DragEventHandler } from "react";
 import { ReducerType } from "../../store/store"
 import { CityItem } from "../city-item/city-item";
-import { contentSlice } from "../../store/content-slice/content-slice";
 import { DragArea } from "../../const/const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
-import { filterCitiesByWeatherCities } from "../../utils/filters";
 import { ContentCards } from "../common-styles/content-cards";
+import { filterCitiesByWeatherCities } from "../../utils/filters";
 
 
 export function CitiesList () {
-  const {cities, weatherCityList} = useSelector((state: ReducerType) => state[contentSlice.name]);
+  const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
+  const {cities} = useSelector((state: ReducerType) => state.citiesSlice);
+
+  console.log('_________________CitiesList')
   const citiesElements = filterCitiesByWeatherCities({cities, weatherCities: weatherCityList})
     .map((item) => <CityItem key={item.id} city={item}/>)
+
 
   const dispatch = useDispatch()
 
@@ -27,3 +30,5 @@ export function CitiesList () {
     </ContentCards>
   )
 }
+
+

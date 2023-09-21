@@ -18,6 +18,7 @@ const HiddenHeader = styled.h2`
 `;
 
 export function TopButtonSection ({children}: {children: ReactNode}) {
+  console.log('TopButtonSection')
   return (
     <SortSection>
       <HiddenHeader>Форма сортировки</HiddenHeader>

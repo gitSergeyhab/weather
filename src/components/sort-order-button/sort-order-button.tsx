@@ -1,9 +1,10 @@
 import { ChangeEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterChecked, setSortChecked, sortFilterSlice } from "../../store/sort-filter-slice/sort-filter-slice";
 import { ReducerType } from "../../store/store";
 import { ConditionImg, SortImg } from "../icon-img/icon-img";
 import { InputWrapperCheckBox, InputWrapperRadio } from "../common-styles/inputs";
+import { setSortChecked } from "../../store/cities-slice/cities-slice";
+import { setFilterChecked } from "../../store/content-slice/content-slice";
 
 
 const getChecked = (type: string, filterChecked: string[], sortChecked: string, version: string) => {
@@ -22,9 +23,11 @@ interface ISortOrderButton {
 }
 
 export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrderButton) {
+  console.log('SortOrderButton', {id})
 
   const dispatch = useDispatch();
-  const {filterChecked, sortChecked} = useSelector((state: ReducerType) => state[sortFilterSlice.name])
+  const {filterChecked} = useSelector((state: ReducerType) => state.contentSlice)
+  const {sortChecked} = useSelector((state: ReducerType) => state.citiesSlice)
   const checked = getChecked(type, filterChecked, sortChecked, version)
 
   const handleChange: ChangeEventHandler = () => {

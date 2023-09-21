@@ -27,7 +27,6 @@ export const mapSlice = createSlice({
       state.center = payload;
     },
     setPortalWeather(state, {payload} : {payload: ICityWeather|null}) {
-      console.log('setPortalWeather', {payload})
       state.portalWeather = payload;
     },
     setWeatherForecastList(state, {payload}: {payload: IForecast[]}) {

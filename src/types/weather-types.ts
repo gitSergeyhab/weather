@@ -91,7 +91,8 @@ export interface ICityWeather extends IWeather {
   cityId: number,
   cityName: string
   countryName: string,
-  coordinates: number[],
+  lat: number,
+  lon: number,
   speed: number;
   gust:  number;
 }

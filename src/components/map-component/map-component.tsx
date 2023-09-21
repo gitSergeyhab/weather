@@ -14,16 +14,17 @@ import { MAP_BALLOON_ID, mapSetting } from '../../const/map-settings';
 const {modules, options, zoom} = mapSetting;
 
 export function MapComponent () {
-  const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
+  const {weatherCityList, filterChecked} = useSelector((state: ReducerType) => state.contentSlice);
   const {center, portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
-  const {filterChecked} = useSelector((state: ReducerType) => state.sortFilterSlice);
   const dispatch = useDispatch();
+  console.log('MapComponent')
 
   const filteredWeatherCities = filterWeatherCitiesByConditions({ weatherCityList,  filterChecked })
 
   useEffect(() => {
     if (filteredWeatherCities.length) {
-      dispatch(setCenter(filteredWeatherCities[0].coordinates))
+      const {lat, lon} = filteredWeatherCities[0]
+      dispatch(setCenter([lat, lon]))
     }
   }, [])
 

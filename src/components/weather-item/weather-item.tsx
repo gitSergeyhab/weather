@@ -13,10 +13,11 @@ import { CardContent } from "../card-content/card-content";
 
 
 export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
-  const {cityId, cityName, countryName, id} = cityWeather
+  const {cityId, cityName, countryName, id, lat, lon} = cityWeather
   const dispatch = useDispatch();
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
   const {isCurrentWeatherCityLoading} = useSelector((state: ReducerType) => state.contentSlice);
+  console.log('WeatherItem', {cityId});
 
   if (id === -1 && isCurrentWeatherCityLoading)  {
     return <BigCardSpinner/>
@@ -50,7 +51,7 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   }
 
   const handleCardDoubleClick = () => {
-    dispatch(setCenter(cityWeather.coordinates))
+    dispatch(setCenter([lat, lon]))
   }
 
   return (
@@ -71,3 +72,5 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
     </BigCard>
   )
 }
+
+// export const WeatherItem = memo(WeatherItemProto, )

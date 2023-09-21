@@ -5,21 +5,31 @@ import { getTableDate } from "./date-utils";
 import { getDirectionFromDeg, getWindString, round1 } from "./utils";
 
 
-export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
-  cityName: serverCity.name,
-  countryName: serverCity.country,
-  id: serverCity.id,
-  lat: serverCity.latitude,
-  lon: serverCity.longitude
-})
+// export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
+//   cityName: serverCity.name,
+//   countryName: serverCity.country,
+//   id: serverCity.id,
+//   lat: serverCity.latitude,
+//   lon: serverCity.longitude
+// })
+
+export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => {
+console.log(serverCity.name, serverCity.latitude, serverCity.longitude)
+  return {  cityName: serverCity.name,
+    countryName: serverCity.country,
+    id: serverCity.id,
+    lat: serverCity.latitude,
+    lon: serverCity.longitude}
+
+}
 
 export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityItem): ICityWeather => {
   const {deg, gust, speed} = weather.wind;
+  const {lat, lon} = city;
   const weatherId = weather.weather[0].id
   const conditions = weatherDict[weatherId] || [];
   const direction = getDirectionFromDeg(deg);
   const windSpeed = getWindString(speed, gust)
-  const coordinates = [city.lat, city.lon];
   return {
     cityId: city.id,
     cityName: city.cityName,
@@ -29,10 +39,10 @@ export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityIt
     id: weather.id,
     temp: weather.main.temp,
     windSpeed,
-    coordinates,
     gust,
     speed,
-    dt: weather.dt
+    dt: weather.dt,
+    lat, lon
  }
 }
 

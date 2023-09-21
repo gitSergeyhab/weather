@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
 import { useDebounce } from "../../hooks/use-debounce";
 import { ReducerType } from "../../store/store";
-import { fetchCities } from "../../store/content-slice/cities-thunk";
 import { InputWrapperSearch } from "../common-styles/inputs";
+import { fetchCities } from "../../store/cities-slice/cities-thunk";
 
 
 export function CityNameInput () {
   const [cityName, setCityName] = useState('');
   const debouncedCityName = useDebounce(cityName, 1000);
   const dispatch = useDispatch();
-  const {citySort} = useSelector((state: ReducerType) => state.sortFilterSlice)
+  const {citySort} = useSelector((state: ReducerType) => state.citiesSlice)
+  console.log('CityNameInput')
 
   useEffect(() => {
     const nameTrim = debouncedCityName.trim();

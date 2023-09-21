@@ -1,31 +1,26 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCities } from "./cities-thunk";
-import { ICityItem } from "../../types/city-types";
 import { ICityWeather } from "../../types/weather-types";
 import { CityWeatherPosition, DragArea, emptyCityWeather } from "../../const/const";
 import { deleteEmptyWeatherCityFromList, insertEmptyWeatherCityToList, insertWeatherCityToEmptySlot, removeWeatherCityFromList, replaceWeatherCityToEmptySlot } from "../../utils/reducer-utils";
 import { refetchWeather } from "./weather-thunk";
 
 export interface InitialCitiesState {
-  cities: ICityItem[],
-  inputCityName?: string,
-  cashCityTemperature: {[key: number]: number},
   weatherCityList: ICityWeather[],
   currentWeatherCity: ICityWeather|null,
   prevCityId: number|null,
   prevCityPosition: CityWeatherPosition,
   isCurrentWeatherCityLoading: boolean
+  filterChecked: string[],
 };
 
 const initialState: InitialCitiesState = {
-  cities: [],
-  cashCityTemperature: {},
   weatherCityList: [],
   currentWeatherCity: null,
   prevCityId: null,
   prevCityPosition: CityWeatherPosition.None,
-  isCurrentWeatherCityLoading: false
+  isCurrentWeatherCityLoading: false,
+  filterChecked: []
 };
 
 interface SetWeatherCityListByDrag {
@@ -39,10 +34,6 @@ export const contentSlice = createSlice({
   initialState,
   reducers: {
 
-    addCashCityTemperature(state, {payload}:{payload: {cityId: number, temperature: number}}) {
-      const {cityId, temperature} = payload;
-      state.cashCityTemperature[cityId] = temperature;
-    },
     setCurrentWeatherCity(state, {payload}: {payload: ICityWeather|null}) {
       state.currentWeatherCity = payload
     },
@@ -102,13 +93,19 @@ export const contentSlice = createSlice({
       state.prevCityId = null;
       state.prevCityPosition = CityWeatherPosition.None;
     },
+    setFilterChecked(state, {payload}) {
+      const filters = state.filterChecked;
+      const index = filters.findIndex((item) => item === payload);
+      if (index === -1) {
+        state.filterChecked = [...filters, payload];
+      } else {
+        state.filterChecked = [...filters.slice(0, index), ...filters.slice(index+1)];
+      }
+    },
   },
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCities.fulfilled, (state, action) => {
-        state.cities = action.payload || []
-      })
       .addCase(refetchWeather.fulfilled, (state) => {
         state.isCurrentWeatherCityLoading = false;
       })
@@ -122,13 +119,13 @@ export const contentSlice = createSlice({
 })
 
 export const {
-  addCashCityTemperature,
   setCurrentWeatherCity,
   setWeatherCityListByDrag,
   setWeatherCityToEmptySlot,
   resetWeatherCityToEmptySlot,
   deleteWeatherCityFromList,
   setDefaultWeatherCities,
-  setWeatherCityByIndex
+  setWeatherCityByIndex,
+  setFilterChecked
   } = contentSlice.actions;
 

@@ -11,6 +11,7 @@ import { CityWeatherPosition } from "../../const/const";
 export function CardContent({cityWeather}: {cityWeather: ICityWeather}) {
   const {direction, windSpeed, temp, conditions} = cityWeather;
   const dispatch = useDispatch()
+  console.log('CardContent', cityWeather.cityId)
 
   const temperature = getShownTemperature(temp);
   const conditionElements = conditions.map((item) => <ConditionImg key={item} version={item}/>)
