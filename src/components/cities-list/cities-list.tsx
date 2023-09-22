@@ -6,7 +6,7 @@ import { DragArea } from "../../const/const";
 import { setDragArea } from "../../store/dnd-slice/dnd-slice";
 import { ContentCards } from "../common-styles/content-cards";
 
-import { useFilteredCities } from "../../hooks/use-firltered-cities";
+import { useFilteredCities } from "../../hooks/use-filtered-cities";
 
 // const x = [
 //   {
