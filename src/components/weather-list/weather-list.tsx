@@ -1,26 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { DragEventHandler, useEffect, useMemo } from "react";
+import { DragEventHandler, useEffect } from "react";
 import styled from "styled-components";
 import { WeatherItem } from "../weather-item/weather-item";
 import { ReducerType } from "../../store/store";
 import { setDragArea, setDragCityId, setDragCityPosition } from "../../store/dnd-slice/dnd-slice";
 import { CityWeatherPosition, DragArea } from "../../const/const";
 import { setWeatherCityListByDrag } from "../../store/content-slice/content-slice";
-import { filterWeatherCitiesByConditions } from "../../utils/filters";
 import { ContentBigCards } from "../common-styles/content-cards";
 import { setWeatherCitiesToLS } from "../../utils/storage-utils";
 import { setCityWeatherIds } from "../../store/cities-slice/cities-slice";
+import { useFilteredWeatherCities } from "../../hooks/use-filtered-weather-cities";
 
-
-// const compareCityLists = (first: ICityWeather[], second:ICityWeather[]) => {
-//   if (first.length !== second.length) return false;
-//   for (let i=0; i<first.length; i++) {
-//     if (first[i] !== second[i]) {
-//       return false;
-//     }
-//   }
-//   return true
-// }
 
 export const WeatherContentHelp  = styled.div`
   position: absolute;
@@ -39,8 +29,9 @@ export const WeatherContentHelp  = styled.div`
 export function WeatherList () {
   const {dragArea, dragCityId, dragCityPosition} = useSelector((state: ReducerType) => state.dndSlice)
   const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
-  const {filterChecked} = useSelector((state: ReducerType) => state.contentSlice);
   const dispatch = useDispatch();
+
+  const filteredWeatherCities = useFilteredWeatherCities()
 
   console.log('WEATHER___________________________')
 
@@ -54,14 +45,7 @@ export function WeatherList () {
   }, [weatherCityList, dispatch])
 
 
-  const filteredWeatherCities = useMemo(() =>
-    filterWeatherCitiesByConditions({ weatherCityList,  filterChecked }),
-    [weatherCityList, filterChecked]
-    )
-  const citiesElements =  useMemo(() =>
-    filteredWeatherCities.map((item) => <WeatherItem key={item.cityId} cityWeather={item}/>),
-    [filteredWeatherCities]
-    )
+  const citiesElements = filteredWeatherCities.map((item) => <WeatherItem key={item.cityId} cityWeather={item}/>)
 
 
   const handleDragEnter: DragEventHandler = (evt) => {
