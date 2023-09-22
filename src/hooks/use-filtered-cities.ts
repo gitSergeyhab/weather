@@ -13,8 +13,8 @@ export interface UseFilteredCities {
 }
 
 export const useFilteredCities = () => {
-  const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
-  const {sortChecked, inputCityPrefix} = useSelector((state: ReducerType) => state.citiesSlice);
+  // const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
+  const {sortChecked, inputCityPrefix, cityWeatherIds} = useSelector((state: ReducerType) => state.citiesSlice);
   const {data, isError} = useGetCitiesQuery(
     {namePrefix: inputCityPrefix, sortDirection: sortChecked},
     {skip: inputCityPrefix.length < 1}
@@ -24,9 +24,9 @@ export const useFilteredCities = () => {
 
   useEffect(() => {
     if (data) {
-      setFilteredCities(filterCitiesByWeatherCities({cities: data, weatherCityList}))
+      setFilteredCities(filterCitiesByWeatherCities({cities: data, cityWeatherIds}))
     }
-  }, [data, weatherCityList])
+  }, [data, cityWeatherIds])
 
   return {filteredCities, isError}
 }

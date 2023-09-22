@@ -9,6 +9,7 @@ export interface InitialCitiesState {
   inputCityPrefix: string,
   cashCityTemperature: {[key: number]: number},
   sortChecked: 'down'|'up',
+  cityWeatherIds: number[]
 };
 
 const initialState: InitialCitiesState = {
@@ -16,6 +17,7 @@ const initialState: InitialCitiesState = {
   inputCityPrefix: '',
   cashCityTemperature: {},
   sortChecked: 'up',
+  cityWeatherIds: []
 
 };
 
@@ -34,6 +36,9 @@ export const citiesSlice = createSlice({
     setInputCityPrefix(state, {payload}) {
       state.inputCityPrefix = payload;
     },
+    setCityWeatherIds(state, {payload}:{payload: number[]}) {
+      state.cityWeatherIds = payload;
+    },
   },
 
   // extraReducers: (builder) => {
@@ -47,6 +52,7 @@ export const citiesSlice = createSlice({
 export const {
   addCashCityTemperature,
   setSortChecked,
-  setInputCityPrefix
+  setInputCityPrefix,
+  setCityWeatherIds
   } = citiesSlice.actions;
 

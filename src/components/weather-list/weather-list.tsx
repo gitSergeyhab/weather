@@ -9,6 +9,7 @@ import { setWeatherCityListByDrag } from "../../store/content-slice/content-slic
 import { filterWeatherCitiesByConditions } from "../../utils/filters";
 import { ContentBigCards } from "../common-styles/content-cards";
 import { setWeatherCitiesToLS } from "../../utils/storage-utils";
+import { setCityWeatherIds } from "../../store/cities-slice/cities-slice";
 
 
 // const compareCityLists = (first: ICityWeather[], second:ICityWeather[]) => {
@@ -49,7 +50,8 @@ export function WeatherList () {
 
   useEffect(() => {
     setWeatherCitiesToLS(weatherCityList);
-  }, [weatherCityList])
+    dispatch(setCityWeatherIds(weatherCityList.map((item) => item.cityId)))
+  }, [weatherCityList, dispatch])
 
 
   const filteredWeatherCities = useMemo(() =>
