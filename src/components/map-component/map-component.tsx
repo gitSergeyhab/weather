@@ -17,7 +17,7 @@ export function MapComponent () {
   const {weatherCityList, filterChecked} = useSelector((state: ReducerType) => state.contentSlice);
   const {center, portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
   const dispatch = useDispatch();
-  console.log('MapComponent')
+  console.log('MAP____________')
 
   const filteredWeatherCities = filterWeatherCitiesByConditions({ weatherCityList,  filterChecked })
 

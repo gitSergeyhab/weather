@@ -67,7 +67,6 @@ export const BigCard = styled.div.attrs({draggable: 'true'})`
    background-color: var(--color-blue-main);
  }
 
-/* transition: all ease-in-out .3s; */
 `;
 
 

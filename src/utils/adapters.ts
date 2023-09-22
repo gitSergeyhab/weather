@@ -2,26 +2,29 @@ import { CityData, ICityItem } from "../types/city-types";
 import { ICityWeather, IForecast, WeatherType } from "../types/weather-types";
 import { weatherDict } from "../weather-dict";
 import { getTableDate } from "./date-utils";
+import { getUniqueCities } from "./get-unique-cities";
 import { getDirectionFromDeg, getWindString, round1 } from "./utils";
 
 
-// export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
-//   cityName: serverCity.name,
-//   countryName: serverCity.country,
-//   id: serverCity.id,
-//   lat: serverCity.latitude,
-//   lon: serverCity.longitude
-// })
-
-export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => {
-console.log(serverCity.name, serverCity.latitude, serverCity.longitude)
-  return {  cityName: serverCity.name,
-    countryName: serverCity.country,
-    id: serverCity.id,
-    lat: serverCity.latitude,
-    lon: serverCity.longitude}
-
+interface CitiesData {
+  data: CityData[]
 }
+
+export const adaptServerCityToCityItem = (serverCity: CityData): ICityItem => ({
+  cityName: serverCity.name,
+  countryName: serverCity.country,
+  id: serverCity.id,
+  lat: serverCity.latitude,
+  lon: serverCity.longitude
+})
+
+
+export const  adaptServerCitiesDataToCities = (data: CitiesData): ICityItem[] => {
+  const uniqueCities = getUniqueCities(data.data)
+  const cities = uniqueCities.map(adaptServerCityToCityItem);
+  return cities;
+}
+
 
 export const adaptWeatherToClientWithCity= ( weather: WeatherType, city: ICityItem): ICityWeather => {
   const {deg, gust, speed} = weather.wind;

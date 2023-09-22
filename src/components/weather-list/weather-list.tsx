@@ -41,7 +41,7 @@ export function WeatherList () {
   const {filterChecked} = useSelector((state: ReducerType) => state.contentSlice);
   const dispatch = useDispatch();
 
-  console.log('WeatherList___________________________')
+  console.log('WEATHER___________________________')
 
   useEffect(() => {
     dispatch(setWeatherCityListByDrag({dragArea, dragCityId, dragCityPosition}));

@@ -1,22 +1,21 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCities } from "./cities-thunk";
-import { ICityItem } from "../../types/city-types";
-import { CitySort } from "../../const/const";
+// import { fetchCities } from "./cities-thunk";
+// import { ICityItem } from "../../types/city-types";
 
 
 export interface InitialCitiesState {
-  cities: ICityItem[],
+  // cities: ICityItem[],
+  inputCityPrefix: string,
   cashCityTemperature: {[key: number]: number},
   sortChecked: 'down'|'up',
-  citySort: CitySort
 };
 
 const initialState: InitialCitiesState = {
-  cities: [],
+  // cities: [],
+  inputCityPrefix: '',
   cashCityTemperature: {},
   sortChecked: 'up',
-  citySort: CitySort.NameReverse,
 
 };
 
@@ -31,20 +30,23 @@ export const citiesSlice = createSlice({
     },
     setSortChecked(state, {payload}) {
       state.sortChecked = payload;
-      state.citySort = payload === 'down' ? CitySort.Name : CitySort.NameReverse;
+    },
+    setInputCityPrefix(state, {payload}) {
+      state.inputCityPrefix = payload;
     },
   },
 
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchCities.fulfilled, (state, action) => {
-        state.cities = action.payload || []
-      })
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchCities.fulfilled, (state, action) => {
+  //       state.cities = action.payload || []
+  //     })
+  // },
 })
 
 export const {
   addCashCityTemperature,
-  setSortChecked
+  setSortChecked,
+  setInputCityPrefix
   } = citiesSlice.actions;
 

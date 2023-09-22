@@ -12,7 +12,7 @@ import { SmallCard, SmallCardCity, SmallCardTemperature } from "../common-styles
 
 export function CityItem({city}: {city: ICityItem}) {
   const dispatch = useDispatch();
-console.log('CityItem', city.id)
+// console.log('CityItem', city.id)
   const { cityName, countryName, id } = city;
 
   const {currentWeatherCity} = useSelector((state: ReducerType) => state.contentSlice);

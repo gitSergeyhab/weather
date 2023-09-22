@@ -3,6 +3,7 @@ import { CitiesContentSection } from "../components/content-section/content-sect
 import { TopButtonsPanel } from "../components/top-buttons-panel/top-buttons-panel";
 import { VisuallyHidden } from "../components/common-styles/common";
 import { MapComponent } from "../components/map-component/map-component";
+// import { Test } from "../components/test";
 
 const WeatherApp = styled.section`
   display: flex;
@@ -40,6 +41,7 @@ export function App () {
         </WeatherContent>
         <MapComponent/>
       </WeatherApp>
+      {/* <Test/> */}
     </main>
   )
 }

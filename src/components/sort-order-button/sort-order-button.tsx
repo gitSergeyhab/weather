@@ -23,7 +23,7 @@ interface ISortOrderButton {
 }
 
 export function SortOrderButton ({id, type, name, ariaLabel, version}: ISortOrderButton) {
-  console.log('SortOrderButton', {id})
+  // console.log('SortOrderButton', {id})
 
   const dispatch = useDispatch();
   const {filterChecked} = useSelector((state: ReducerType) => state.contentSlice)

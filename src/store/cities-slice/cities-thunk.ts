@@ -9,13 +9,14 @@ import { getUniqueCities } from "../../utils/get-unique-cities";
 
 type FetchCities = {
   value: string,
-  sort: CitySort
+  sortChecked: 'down'|'up'
 }
 
 export const fetchCities = createAsyncThunk(
   'cities/fetchCities',
-  async ({ value, sort }: FetchCities) => {
+  async ({ value, sortChecked }: FetchCities) => {
     try {
+      const sort = sortChecked === 'down' ? CitySort.Name : CitySort.NameReverse;
       const result = await geoDbApi.get<CityResponseData> (`/cities`, {
         params: { sort, namePrefix: value }
       })

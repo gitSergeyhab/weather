@@ -18,7 +18,7 @@ const Section = styled.section`
 
 export function CitiesContentSection () {
   const dispatch = useDispatch();
-  console.log('CitiesContentSection')
+  console.log('!__________CitiesContentSection_______________!')
 
   const handleDragLeave: DragEventHandler = (evt) => {
     evt.preventDefault()

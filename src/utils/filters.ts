@@ -28,12 +28,12 @@ export const filterWeatherCitiesByConditions = ({weatherCityList, filterChecked}
 weatherCityList.filter((item) => compareLists(item.conditions, filterChecked));
 
 
-  interface FilterCityByWeatherCities {
+export interface FilterCityByWeatherCities {
     cities: ICityItem[],
-    weatherCities: ICityWeather[]
+    weatherCityList: ICityWeather[]
   }
 
-  export const filterCitiesByWeatherCities = ({cities, weatherCities}: FilterCityByWeatherCities) => {
-    const weatherCitiesId = weatherCities.map((item) => item.cityId);
+  export const filterCitiesByWeatherCities = ({cities, weatherCityList}: FilterCityByWeatherCities) => {
+    const weatherCitiesId = weatherCityList.map((item) => item.cityId);
     return cities.filter((item) => !weatherCitiesId.includes(item.id));
   }
