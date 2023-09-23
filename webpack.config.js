@@ -26,7 +26,7 @@ const config = {
   output: {
     filename: isDev ? '[name].js' : '[name].[contenthash].js',
     path: path.resolve(dirname, 'build'),
-    publicPath: '/',
+    // publicPath: '/',
     clean: true,
   },
   resolve: {
@@ -61,7 +61,7 @@ const config = {
     }),
     new EnvironmentPlugin(environments),
     new HtmlWebpackPlugin({
-      template: path.resolve(dirname, 'src', 'index.html'),
+      template: path.resolve(dirname, 'src', 'index.html')
     }),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash].css',
@@ -86,7 +86,7 @@ const config = {
     static: path.resolve(dirname, 'build'),
     open: true,
     compress: true,
-    historyApiFallback: true,
+    // historyApiFallback: true,
     hot: true,
   },
   devtool: isDev ? 'source-map' : false,

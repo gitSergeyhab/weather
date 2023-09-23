@@ -1,11 +1,17 @@
 {
+  "homepage": "https://gitSergeyhab.github.io/weather",
   "name": "weather",
   "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/gitSergeyhab/weather"
+  },
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "cross-env NODE_ENV=development webpack serve",
     "lint": "eslint --ext .ts,.tsx src --fix",
     "build": "webpack"
@@ -42,6 +48,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.5",
     "prettier": "^2.8.7",
