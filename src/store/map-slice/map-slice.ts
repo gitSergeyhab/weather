@@ -16,7 +16,7 @@ const initialState: MapInitialState = {
   center: DEFAULT_CENTER,
   portalWeather: null,
   weatherForecastList: [],
-  isForecastLoading: false,
+  isForecastLoading: true,
   mapWeatherCityList: []
 }
 
@@ -47,6 +47,7 @@ export const mapSlice = createSlice({
         state.isForecastLoading = false;
       })
       .addCase(fetchForecast.pending, (state) => {
+        console.log('pending')
         state.isForecastLoading = true;
       })
   }

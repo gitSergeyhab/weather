@@ -31,7 +31,6 @@ const WeatherContent = styled.div`
 
 
 export function App () {
-  // console.log(process.env.API_KEY, process.env)
   return (
     <main>
       <WeatherApp >

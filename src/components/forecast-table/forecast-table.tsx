@@ -16,6 +16,7 @@ import { ForecastSpinner } from "../spinners/spinners";
 export function ForecastTable () {
   const {isForecastLoading, weatherForecastList} = useSelector((state: ReducerType) => state.mapSlice);
 
+  console.log({isForecastLoading})
   if (isForecastLoading) {
     return <ForecastSpinner/>
   }

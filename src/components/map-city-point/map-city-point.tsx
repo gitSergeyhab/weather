@@ -20,7 +20,7 @@ export function MapCityPoint({point}: {point:ICityWeather}) {
   const properties = getProperties(cityName)
 
   const handlePointClick = () => {
-    dispatch(setPortalWeather(point))
+    setTimeout(() => dispatch(setPortalWeather(point)), 1) // что успел отрендериться balloonContent
     dispatch(fetchForecast({lat, lon}) as unknown as AnyAction)
   }
 

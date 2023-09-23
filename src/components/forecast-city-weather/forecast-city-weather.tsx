@@ -5,6 +5,7 @@ import { getShownTemperature } from "../../utils/utils";
 import { ConditionImg, IconWind } from "../icon-img/icon-img";
 import { ForecastTable } from "../forecast-table/forecast-table";
 import { ReducerType } from "../../store/store";
+import { ForecastSpinner } from "../spinners/spinners";
 
 export const WeatherPortalWrapper = styled.div`
   width: 500px;
@@ -42,8 +43,8 @@ const Div = styled.div`
 export function ForecastCityWeather() {
   const  {portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
 
-  if (!portalWeather) {
-    return null
+  if (!portalWeather ) {
+    return <ForecastSpinner/>
   }
 
   const { cityName, conditions, direction, temp, windSpeed } = portalWeather;
