@@ -15,8 +15,6 @@ const {modules, options, zoom} = mapSetting;
 export function MapComponent () {
   const {center, mapWeatherCityList} = useSelector((state: ReducerType) => state.mapSlice);
   const dispatch = useDispatch();
-  console.log('MAP____________')
-
 
   useEffect(() => {
     if (mapWeatherCityList.length) {

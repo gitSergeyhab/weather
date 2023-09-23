@@ -14,11 +14,10 @@ const Section = styled.section`
   width: 100%;
   height: 100%;
   padding: 2px 4px 0 4px;
-`
+`;
 
 export function CitiesContentSection () {
   const dispatch = useDispatch();
-  console.log('!__________CitiesContentSection_______________!')
 
   const handleDragLeave: DragEventHandler = (evt) => {
     evt.preventDefault()

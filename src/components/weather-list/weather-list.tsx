@@ -34,8 +34,6 @@ export function WeatherList () {
 
   const filteredWeatherCities = useFilteredWeatherCities()
 
-  console.log('WEATHER___________________________')
-
   useEffect(() => {
     dispatch(setWeatherCityListByDrag({dragArea, dragCityId, dragCityPosition}));
   }, [dragArea, dragCityId, dragCityPosition, dispatch])
@@ -51,7 +49,6 @@ export function WeatherList () {
 
 
   const citiesElements = filteredWeatherCities.map((item) => <WeatherItem key={item.cityId} cityWeather={item}/>)
-
 
   const handleDragEnter: DragEventHandler = (evt) => {
     evt.preventDefault()

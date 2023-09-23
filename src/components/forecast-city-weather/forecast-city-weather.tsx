@@ -42,8 +42,6 @@ const Div = styled.div`
 export function ForecastCityWeather() {
   const  {portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
 
-  console.log('PortalCityWeather')
-
   if (!portalWeather) {
     return null
   }

@@ -17,7 +17,6 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
   const dispatch = useDispatch();
   const {dragArea} = useSelector((state: ReducerType) => state.dndSlice);
   const {isCurrentWeatherCityLoading} = useSelector((state: ReducerType) => state.contentSlice);
-  console.log('WeatherItem', {cityId});
 
   if (id === -1 && isCurrentWeatherCityLoading)  {
     return <BigCardSpinner/>
@@ -72,5 +71,3 @@ export function WeatherItem({cityWeather}: {cityWeather: ICityWeather}) {
     </BigCard>
   )
 }
-
-// export const WeatherItem = memo(WeatherItemProto, )

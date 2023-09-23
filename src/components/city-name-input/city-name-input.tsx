@@ -9,7 +9,6 @@ export function CityNameInput () {
   const [cityName, setCityName] = useState('');
   const debouncedCityName = useDebounce(cityName, 1000);
   const dispatch = useDispatch();
-  console.log('CityNameInput')
 
   useEffect(() => {
     const nameTrim = debouncedCityName.trim();
@@ -17,8 +16,6 @@ export function CityNameInput () {
       dispatch(setInputCityPrefix(nameTrim))
     }
   }, [debouncedCityName, dispatch])
-
-
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (evt) => setCityName(evt.currentTarget.value);
 

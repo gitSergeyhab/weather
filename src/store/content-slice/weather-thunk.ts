@@ -20,7 +20,7 @@ export const fetchWeather = createAsyncThunk(
       dispatch(addCashCityTemperature({cityId: cityWeather.cityId, temperature: cityWeather.temp}))
       dispatch(setCurrentWeatherCity(cityWeather));
     } catch (err) {
-      console.log({err})
+      console.error({err})
       toast.error('невозможно загрузить данные. попробуйте позже');
     }
   }
@@ -37,7 +37,7 @@ export const refetchWeather = createAsyncThunk(
       dispatch(setCurrentWeatherCity(cityWeather));
       dispatch(setWeatherCityToEmptySlot())
     } catch (err) {
-      console.log({err})
+      console.error({err})
       toast.error('невозможно загрузить данные. попробуйте позже');
     }
   }
@@ -45,33 +45,23 @@ export const refetchWeather = createAsyncThunk(
 
 export const fetchWeatherList = createAsyncThunk(
   'weather/fetchWeatherList',
-  async (_nothing: undefined, {dispatch}) => {
-    try {
+   (_nothing: undefined, {dispatch}) => {
       const list = getWeatherCitiesFromLS();
-      console.log('{list}__________________________________', {list})
 
       list.forEach((item, index) => {
         const {cityId, cityName, lat, lon, countryName} = item;
         const city = {id: cityId, cityName, countryName, lat, lon }
-        console.log('{cityName, lat, lon}__________________________________')
 
-        console.log({cityName, lat, lon})
-        console.log('{cityName, lat, lon}__________________________________')
-        openWeatherApi.get<WeatherType> (`/weather`, { params: { lat, lon } })
+        openWeatherApi.get<WeatherType> (`/weather-`, { params: { lat, lon } })
           .then(({data}) => {
             const cityWeather = adaptWeatherToClientWithCity(data, city);
             dispatch(addCashCityTemperature({cityId: cityWeather.cityId, temperature: cityWeather.temp}))
             dispatch(setWeatherCityByIndex({index, weather: cityWeather}))
           })
           .catch((err) => {
-            console.log({err})
-            toast.error('невозможно загрузить данные. попробуйте позже');
+            console.error({err})
+            toast.error(`${cityName}: невозможно загрузить данные. попробуйте позже`);
           });
       })
-
-    } catch (err) {
-      console.log({err})
-      toast.error('невозможно загрузить данные. попробуйте позже');
-    }
   }
 )

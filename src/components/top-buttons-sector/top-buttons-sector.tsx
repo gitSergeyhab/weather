@@ -28,6 +28,5 @@ export const ButtonSector = styled.div`
 
 
 export function TopButtonSector ({children}: {children: ReactNode}) {
-  console.log('TopButtonSector')
   return <ButtonSector>{children}</ButtonSector>
 }

@@ -10,7 +10,6 @@ const ForecastTH = styled.th`
 export const FirstTH = styled.th``
 
 export function ForecastHeaderRow ({forecastList}: {forecastList: IForecast[]}) {
-  console.log('ForecastHeaderRow')
   const times = forecastList.map(({id, stringDate}) => <ForecastTH key={id}>{stringDate}</ForecastTH>);
   const thElements = [ <FirstTH key="first-head"/>, ...times];
 

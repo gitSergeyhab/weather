@@ -18,8 +18,6 @@ export function MapCityPoint({point}: {point:ICityWeather}) {
   const {cityName, lat, lon} = point;
   const dispatch = useDispatch();
   const properties = getProperties(cityName)
-  console.log('MapCityPoint', point.cityId)
-
 
   const handlePointClick = () => {
     dispatch(setPortalWeather(point))
