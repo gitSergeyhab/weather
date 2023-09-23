@@ -9,7 +9,6 @@ export function CityNameInput () {
   const [cityName, setCityName] = useState('');
   const debouncedCityName = useDebounce(cityName, 1000);
   const dispatch = useDispatch();
-  // const {sortChecked} = useSelector((state: ReducerType) => state.citiesSlice)
   console.log('CityNameInput')
 
   useEffect(() => {
@@ -30,7 +29,6 @@ export function CityNameInput () {
         type="search"
         name="city-search"
         onChange={handleInputChange}
-        // value={cityName}
         placeholder="Название города"
       />
       <label htmlFor="search" aria-label="Поиск городов" />

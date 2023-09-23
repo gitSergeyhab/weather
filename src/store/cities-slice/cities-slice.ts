@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface InitialCitiesState {
@@ -13,7 +12,6 @@ const initialState: InitialCitiesState = {
   cashCityTemperature: {},
   sortChecked: 'up',
   cityWeatherIds: []
-
 };
 
 export const citiesSlice = createSlice({
@@ -34,14 +32,7 @@ export const citiesSlice = createSlice({
     setCityWeatherIds(state, {payload}:{payload: number[]}) {
       state.cityWeatherIds = payload;
     },
-  },
-
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchCities.fulfilled, (state, action) => {
-  //       state.cities = action.payload || []
-  //     })
-  // },
+  }
 })
 
 export const {
