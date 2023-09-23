@@ -10,7 +10,6 @@ export const fetchForecast = createAsyncThunk(
   'weather/fetchForecast',
   async (coordinates: {lat: number, lon: number}, {dispatch}) => {
     try {
-      console.log('fetchForecast start')
       dispatch(setWeatherForecastList([]));
       const {lon, lat} = coordinates;
       const {data} = await openWeatherApi.get<ForecastDate> (`/forecast`, { params: { lat, lon } });

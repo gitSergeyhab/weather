@@ -41,7 +41,6 @@ export function App () {
         </WeatherContent>
         <MapComponent/>
       </WeatherApp>
-      {/* <Test/> */}
     </main>
   )
 }

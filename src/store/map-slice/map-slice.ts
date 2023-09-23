@@ -47,7 +47,6 @@ export const mapSlice = createSlice({
         state.isForecastLoading = false;
       })
       .addCase(fetchForecast.pending, (state) => {
-        console.log('pending')
         state.isForecastLoading = true;
       })
   }
