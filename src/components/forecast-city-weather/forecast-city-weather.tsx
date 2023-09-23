@@ -1,12 +1,10 @@
 
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { ICityWeather } from "../../types/weather-types";
 import { getShownTemperature } from "../../utils/utils";
 import { ConditionImg, IconWind } from "../icon-img/icon-img";
 import { ForecastTable } from "../forecast-table/forecast-table";
 import { ReducerType } from "../../store/store";
-import { ForecastSpinner } from "../spinners/spinners";
 
 export const WeatherPortalWrapper = styled.div`
   width: 500px;
@@ -17,9 +15,6 @@ export const WeatherPortalWrapper = styled.div`
   transition: all ease-in-out 1s;
 `;
 
-const ForecastWrapper = styled.div`
-  overflow-x: scroll;
-`;
 
 const WeatherWrapper = styled.div`
   width: 460px;
@@ -42,16 +37,20 @@ const Div = styled.div`
   font-size: .8rem;
 `;
 
-export function PortalCityWeather({cityWeather}: {cityWeather: ICityWeather}) {
-  const { cityName, conditions, direction, temp, windSpeed} = cityWeather;
-  console.log('PortalCityWeather', cityWeather.cityId)
 
-  const {isForecastLoading} = useSelector((state: ReducerType) => state.mapSlice);
 
+export function ForecastCityWeather() {
+  const  {portalWeather} = useSelector((state: ReducerType) => state.mapSlice);
+
+  console.log('PortalCityWeather')
+
+  if (!portalWeather) {
+    return null
+  }
+
+  const { cityName, conditions, direction, temp, windSpeed } = portalWeather;
   const temperature = getShownTemperature(temp);
   const conditionElements = conditions.map((item) => <ConditionImg key={item} version={item}/>);
-
-  const forecastElement = isForecastLoading ? <ForecastSpinner/> : <ForecastWrapper><ForecastTable/></ForecastWrapper>;
 
   return (
     <WeatherPortalWrapper>
@@ -62,7 +61,7 @@ export function PortalCityWeather({cityWeather}: {cityWeather: ICityWeather}) {
           <Div>Ветер {direction}, {windSpeed} м/с</Div>
           <Div>{temperature}</Div>
       </WeatherWrapper>
-      {forecastElement}
+      <ForecastTable/>
     </WeatherPortalWrapper>
   )
 }

@@ -9,6 +9,7 @@ interface IPortal {
 export function Portal({ children, elementId}: IPortal) {
     const mount = document.getElementById(elementId);
     const el = document.createElement('div');
+    console.log('Portal')
 
     useEffect(() => {
       // добавляем свой див к искомому элементу
@@ -20,7 +21,9 @@ export function Portal({ children, elementId}: IPortal) {
     }, [ el, mount ])
 
     // отменяем отрисовку при отсутствии искомого элемента
+    console.log('Portal mount before')
     if (!mount) return null;
+    console.log('Portal return')
     // собственно, пририсовываем React-элемент в div к искомому HTML
     return createPortal(children, el);
 }

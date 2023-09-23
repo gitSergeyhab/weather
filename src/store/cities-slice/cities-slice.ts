@@ -1,11 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-// import { fetchCities } from "./cities-thunk";
-// import { ICityItem } from "../../types/city-types";
-
 
 export interface InitialCitiesState {
-  // cities: ICityItem[],
   inputCityPrefix: string,
   cashCityTemperature: {[key: number]: number},
   sortChecked: 'down'|'up',
@@ -13,7 +9,6 @@ export interface InitialCitiesState {
 };
 
 const initialState: InitialCitiesState = {
-  // cities: [],
   inputCityPrefix: '',
   cashCityTemperature: {},
   sortChecked: 'up',

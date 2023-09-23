@@ -10,6 +10,7 @@ import { ContentBigCards } from "../common-styles/content-cards";
 import { setWeatherCitiesToLS } from "../../utils/storage-utils";
 import { setCityWeatherIds } from "../../store/cities-slice/cities-slice";
 import { useFilteredWeatherCities } from "../../hooks/use-filtered-weather-cities";
+import { setMapWeatherCityList } from "../../store/map-slice/map-slice";
 
 
 export const WeatherContentHelp  = styled.div`
@@ -43,6 +44,10 @@ export function WeatherList () {
     setWeatherCitiesToLS(weatherCityList);
     dispatch(setCityWeatherIds(weatherCityList.map((item) => item.cityId)))
   }, [weatherCityList, dispatch])
+
+  useEffect(() => {
+    dispatch(setMapWeatherCityList(filteredWeatherCities))
+  }, [filteredWeatherCities, dispatch])
 
 
   const citiesElements = filteredWeatherCities.map((item) => <WeatherItem key={item.cityId} cityWeather={item}/>)

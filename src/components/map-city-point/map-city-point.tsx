@@ -9,7 +9,7 @@ import { MAP_BALLOON_ID, MAP_CITY_OPTIONS } from '../../const/map-settings';
 
 const getProperties = (cityName: string) => ({
   iconContent: cityName,
-  hintContent: `кликните, чтобы увидеть прогноз`,
+  hintContent: `кликните, чтобы загрузить прогноз`,
   // создаём пустой элемент с заданными размерами
   balloonContent: `<div id=${MAP_BALLOON_ID}></div>`,
 })
@@ -20,9 +20,9 @@ export function MapCityPoint({point}: {point:ICityWeather}) {
   const properties = getProperties(cityName)
   console.log('MapCityPoint', point.cityId)
 
+
   const handlePointClick = () => {
-    dispatch(setPortalWeather(null))
-    setTimeout(() => {dispatch(setPortalWeather(point))}, 0)
+    dispatch(setPortalWeather(point))
     dispatch(fetchForecast({lat, lon}) as unknown as AnyAction)
   }
 

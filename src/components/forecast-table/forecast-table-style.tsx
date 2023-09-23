@@ -35,3 +35,7 @@ export const Table = styled.table`
 `;
 
 export const FirstTD = styled.td``;
+
+export const ForecastWrapper = styled.div`
+  overflow-x: scroll;
+`;

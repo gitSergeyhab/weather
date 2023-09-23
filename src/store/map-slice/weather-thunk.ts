@@ -16,7 +16,7 @@ export const fetchForecast = createAsyncThunk(
       const forecastList = data.list.map(adaptForecastToClient);
       dispatch(setWeatherForecastList(forecastList));
     } catch (err) {
-      console.log({err})
+      console.error({err})
       toast.error('невозможно загрузить данные. попробуйте позже');
     }
   }

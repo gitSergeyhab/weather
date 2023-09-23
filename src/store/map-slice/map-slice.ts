@@ -9,13 +9,15 @@ interface MapInitialState {
   portalWeather: ICityWeather|null;
   weatherForecastList: IForecast[],
   isForecastLoading: boolean;
+  mapWeatherCityList: ICityWeather[],
 }
 
 const initialState: MapInitialState = {
   center: DEFAULT_CENTER,
   portalWeather: null,
   weatherForecastList: [],
-  isForecastLoading: false
+  isForecastLoading: false,
+  mapWeatherCityList: []
 }
 
 
@@ -31,7 +33,10 @@ export const mapSlice = createSlice({
     },
     setWeatherForecastList(state, {payload}: {payload: IForecast[]}) {
       state.weatherForecastList = payload;
-    }
+    },
+    setMapWeatherCityList(state, {payload} : {payload: ICityWeather[]}) {
+      state.mapWeatherCityList = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,4 +52,9 @@ export const mapSlice = createSlice({
   }
 })
 
-export const {setCenter, setPortalWeather, setWeatherForecastList} = mapSlice.actions
+export const {
+  setCenter,
+  setPortalWeather,
+  setWeatherForecastList,
+  setMapWeatherCityList
+} = mapSlice.actions

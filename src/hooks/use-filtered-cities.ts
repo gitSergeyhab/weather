@@ -13,7 +13,6 @@ export interface UseFilteredCities {
 }
 
 export const useFilteredCities = () => {
-  // const {weatherCityList} = useSelector((state: ReducerType) => state.contentSlice);
   const {sortChecked, inputCityPrefix, cityWeatherIds} = useSelector((state: ReducerType) => state.citiesSlice);
   const {data, isError} = useGetCitiesQuery(
     {namePrefix: inputCityPrefix, sortDirection: sortChecked},
