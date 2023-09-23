@@ -4,8 +4,6 @@ import styled from "styled-components";
 export const Table = styled.table`
   table-layout: fixed;
   width: 100%;
-  border-collapse: collapse;
-  border-bottom: 2px solid var(--color-label-active);
 
   & td, & th {
     vertical-align: top;
@@ -16,8 +14,7 @@ export const Table = styled.table`
   }
 
   & td {
-    border-top: 2px solid var(--color-label-active);
-    border-right: 2px solid var(--color-label-active);
+    border: 2px solid var(--color-label-active);
     overflow: hidden;
 
   }

@@ -9,7 +9,7 @@ import { ForecastSpinner } from "../spinners/spinners";
 
 export const WeatherPortalWrapper = styled.div`
   width: 500px;
-  height: 340px;
+  height: 370px;
   padding: 1rem;
   overflow: hidden;
   opacity: 1;
