@@ -2,7 +2,7 @@
 
 ## Прогноз погоды по городам
 
-## Сайт: [gh-pages-weather](gitsergeyhab.github.io/weather/)
+## Сайт: [gitsergeyhab.github.io/weather/](https://gitsergeyhab.github.io/weather/)
 
 ### Как работает:
 - Ввести в поле ввода название (часть названия) города
