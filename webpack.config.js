@@ -4,8 +4,12 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-
+import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+
+const environments = dotenv.config().parsed;
+
+const { EnvironmentPlugin, HotModuleReplacementPlugin, ProvidePlugin} = webpack;
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -27,7 +31,7 @@ const config = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
-    // alias: {'@components': path.resolve(dirname, 'src', 'components')}
+    // alias: {process: "process/browser"}
   },
   mode: isDev ? mode.dev : mode.prod,
   module: {
@@ -52,13 +56,17 @@ const config = {
     ],
   },
   plugins: [
+    new ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new EnvironmentPlugin(environments),
     new HtmlWebpackPlugin({
       template: path.resolve(dirname, 'src', 'index.html'),
     }),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash].css',
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
     new ReactRefreshPlugin(),
     new CopyPlugin({
       patterns: [

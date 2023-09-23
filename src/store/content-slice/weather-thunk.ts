@@ -52,7 +52,7 @@ export const fetchWeatherList = createAsyncThunk(
         const {cityId, cityName, lat, lon, countryName} = item;
         const city = {id: cityId, cityName, countryName, lat, lon }
 
-        openWeatherApi.get<WeatherType> (`/weather-`, { params: { lat, lon } })
+        openWeatherApi.get<WeatherType> (`/weather`, { params: { lat, lon } })
           .then(({data}) => {
             const cityWeather = adaptWeatherToClientWithCity(data, city);
             dispatch(addCashCityTemperature({cityId: cityWeather.cityId, temperature: cityWeather.temp}))
